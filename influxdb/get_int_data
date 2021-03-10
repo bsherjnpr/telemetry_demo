@@ -1,0 +1,40 @@
+
+echo "interface data"
+curl --request POST \
+  http://localhost:8086/api/v2/query?org=jnpr  \
+  --header 'Authorization: Token YzVP5O1sbHQ695-o6HdhBOpSkL3hrQx8nGQr5E3IMU7UFe21pb5lgez8pe_GhVIHfQ-W65FpSkm_dgQBd6dRGA==' \
+  --header 'Accept: application/csv' \
+  --header 'Content-type: application/vnd.flux' \
+  --data ' from(bucket: "bucket1")
+           |> range(start: -10m)
+           |> filter(fn: (r) => r.device == "10.48.188.2")
+           |> filter(fn: (r) => r._field == "/interfaces/interface/state/counters/in-octets")
+           |> keep(columns: ["_time", "_value","/interfaces/interface/@name"])
+           |> derivative(unit: 1s, nonNegative: true, columns: ["_value"], timeColumn: "_time")
+         '
+
+
+## Works!
+#echo "interface data"
+#curl --request POST \
+#  http://localhost:8086/api/v2/query?org=jnpr  \
+#  --header 'Authorization: Token YzVP5O1sbHQ695-o6HdhBOpSkL3hrQx8nGQr5E3IMU7UFe21pb5lgez8pe_GhVIHfQ-W65FpSkm_dgQBd6dRGA==' \
+#  --header 'Accept: application/csv' \
+#  --header 'Content-type: application/vnd.flux' \
+#  --data ' from(bucket: "bucket1")
+#           |> range(start: -10m)
+#           |> filter(fn: (r) => r._measurement == "/interfaces/")
+#           |> filter(fn: (r) => r.device == "10.48.188.2")
+#           |> filter(fn: (r) => r._field == "/interfaces/interface/state/counters/in-octets")
+#           |> drop(columns: ["host", "path", "_measurement"])
+#           |> keep(columns: ["_time", "_value","/interfaces/interface/@name"])
+#           |> derivative(unit: 1s, nonNegative: true, columns: ["_value"], timeColumn: "_time")
+#         '
+
+
+# Works!
+#from(bucket: "bucket1")
+#  |> range(start: dashboardTime)
+#  |> filter(fn: (r) => r._field == "/interfaces/interface/subinterfaces/subinterface/state/counters/in-octets")
+#  |> derivative(unit: 1s, nonNegative: true, columns: ["_value"], timeColumn: "_time")
+  

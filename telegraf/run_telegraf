@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# https://hub.docker.com/_/telegraf
+
+#docker run --net=container:influxdb telegraf
+
+#First, generate a sample configuration and save it as telegraf.conf on the host:
+#$ docker run --rm telegraf telegraf config > telegraf.conf
+cat config.openconfig config.influxdb > telegraf.conf
+#Once youve customized telegraf.conf, you can run the Telegraf container with it mounted in the expected location:
+
+docker run -d --rm --name telegraf -v $PWD/telegraf.conf:/etc/telegraf/telegraf.conf:ro telegraf

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+mkdir data
+chmod -R a+rwx data
+docker run -d --rm --name=grafana --volume "$PWD/data:/var/lib/grafana" -p 3000:3000 grafana/grafana
+
