@@ -1,8 +1,16 @@
 #!/bin/bash
 
-# admin / admin1234
-# org = jnpr bucket = bucket1
+#docker run --rm influxdb:1.8.4-alpine influxd config > influxdb.conf
 
-docker run -d --rm --name influxdb -p 8086:8086 -v $PWD:/var/lib/influxdb2 influxdb:2.0
+docker network create influxdb
+
+docker run -d --rm --name influxdb \
+	--net=influxdb \
+       	-p 8086:8086 \
+       	-p 2003:2003 \
+       	-p 3000:3000 \
+	-e INFLUXDB_GRAPHITE_ENABLED=true \
+       	-v $PWD/data:/var/lib/influxdb \
+       	influxdb:1.8.4
 
 # docker container stop influxdb
