@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# admin / admin1234
+# org = jnpr bucket = bucket1
+
+docker run -d --rm --name influxdb -p 8086:8086 -v $PWD:/var/lib/influxdb2 influxdb:2.0
+
+# docker container stop influxdb

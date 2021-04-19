@@ -1,0 +1,12 @@
+#!/bin/bash
+
+## Image and container
+export INFLUX_VERSION=1.8.4-alpine
+
+
+export MAIN_CONTAINER_NAME=opennti_con
+
+export INPUT_JTI_DIR=plugins/input-jti
+export INPUT_JTI_IMAGE_NAME=juniper/open-nti-input-jti
+export INPUT_JTI_CONTAINER_NAME=opennti_input_jti
+

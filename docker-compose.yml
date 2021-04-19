@@ -1,0 +1,21 @@
+
+## Work in progress, not sure we want to go this way...
+
+version : '3'
+services:
+  influx:
+          docker run -d --rm --name influxdb -p 8086:8086 -v $PWD:/var/lib/influxdb2 influxdb:2.0
+  image: influxdb:1.8.4-alpine
+    ports:
+      - "8086:8086"
+    volumes:
+      - ./influxdb/data:/var/lib/influxdb
+  db:
+    image: mysql
+    ports:
+    - "3306:3306"
+    environment:
+    - MYSQL_ROOT_PASSWORD=password
+    - MYSQL_USER=user
+    - MYSQL_PASSWORD=password
+    - MYSQL_DATABASE=demodb

@@ -1,0 +1,21 @@
+
+echo "interface data"
+curl -s --request POST \
+  http://localhost:8086/api/v2/query?org=jnpr  \
+  --header 'Authorization: Token YzVP5O1sbHQ695-o6HdhBOpSkL3hrQx8nGQr5E3IMU7UFe21pb5lgez8pe_GhVIHfQ-W65FpSkm_dgQBd6dRGA==' \
+  --header 'Accept: application/csv' \
+  --header 'Content-type: application/vnd.flux' \
+  --data ' 
+           from(bucket: "bucket1")
+           |> range(start: -2h)
+           |> filter(fn: (r) => r._measurement == "/interfaces/" )
+'
+
+#           |> keep(columns: ["device"])
+#           |> unique(column: "device")
+#           |> map(fn: (r) => ({ device: r.device }))
+#
+#           |> findColumn(
+#               fn: (key) => key._field == "device",
+#               column: "_value"
+#             )
