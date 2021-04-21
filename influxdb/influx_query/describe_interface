@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# https://docs.influxdata.com/influxdb/v1.8/query_language/explore-schema/
+
+docker exec -i influxdb influx --database "telegraf" -precision "rfc3339" <<EOM
+-- SHOW RETENTION POLICIES;
+
+SHOW MEASUREMENTS;
+
+SHOW TAG KEYS;
+
+SHOW TAG VALUES FROM "interfaces" WITH KEY = "device";
+
+SHOW TAG VALUES FROM "interfaces" WITH KEY = "/interfaces/interface/@name";
+
+SHOW FIELD KEYS FROM "interfaces";
+
+EOM

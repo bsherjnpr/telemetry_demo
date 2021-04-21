@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# https://docs.influxdata.com/influxdb/v1.8/query_language/explore-schema/
+
+docker exec -i influxdb influx --database "telegraf" -precision "rfc3339" <<EOM
+-- SHOW RETENTION POLICIES;
+
+-- SHOW MEASUREMENTS;
+
+-- SHOW TAG KEYS FROM "interfaces";
+
+SHOW TAG VALUES FROM "interfaces" WITH KEY = "device";
+
+--SHOW TAG VALUES FROM "interfaces" WITH KEY = "/interfaces/interface/@name";
+SHOW TAG VALUES FROM "interfaces" WITH KEY = "/interfaces/interface/@name" where device = '10.48.188.97';
+
+-- select * from "interfaces" limit 1;
+
+-- select * FROM "interfaces" WITH KEY = "/interfaces/interface/@name" where device = "10.48.188.97";
+-- select * FROM "interfaces" where device = "10.48.188.97";
+
+-- SHOW FIELD KEYS FROM "interfaces";
+
+-- SELECT *,"/interfaces/interface/state/counters/in-octets" FROM "interfaces" WHERE time >= now()-1m limit 1
+
+-- select "device","/interfaces/interface/state/counters/in-octets","/interfaces/interface[if_name='et-0/0/53']/state/counters/if_in_octets","/interfaces/interface[if_name='et-0/0/52']/state/counters/if_in_octets" from "interfaces" where device = "10.48.188.97";
+
+-- select "/interfaces/interface[if_name='et-0/0/51']/state/counters/if_in_octets" from "interfaces" where "device" = '10.48.188.97' and time >= now() - 10m ;
+
+-- select mean("/interfaces/interface[if_name='et-0/0/51']/state/counters/if_in_octets") from "interfaces" where "device" = '10.48.188.97' and time >= now() - 10m GROUP BY time(5m) ;
+
+-- select DERIVATIVE("/interfaces/interface[if_name='et-0/0/51']/state/counters/if_in_octets",1s) from "interfaces" where "device" = '10.48.188.97' and time >= now() - 10m ;
+
+
+select derivative(mean("/interfaces/interface[if_name='et-0/0/51']/state/counters/if_in_octets"),1s) * 8 from "interfaces" where "device" = '10.48.188.97' and time >= now() - 10m GROUP BY time(5m) fill(none);
+
+
+
+EOM
+
+
+
+# select derivative(mean("/interfaces/interface[if_name='et-0/0/51']/state/counters/if_in_octets"),1s) * 8 from "interfaces" where "device" = '10.48.188.97' and $timeFilter GROUP BY time($__interval) fill(none);
+
+

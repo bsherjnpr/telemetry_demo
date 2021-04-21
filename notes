@@ -1,0 +1,8 @@
+
+Remove all stopped containers:
+docker rm $(docker ps --filter "status=exited" -q)
+
+date in UTC
+date -u
+
+
