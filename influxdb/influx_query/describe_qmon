@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# https://docs.influxdata.com/influxdb/v1.8/query_language/explore-schema/
+
+docker exec -i influxdb influx --database "telegraf" -precision "rfc3339" <<EOM
+-- SHOW RETENTION POLICIES;
+
+--SHOW MEASUREMENTS;
+
+SHOW TAG KEYS;
+
+SHOW TAG VALUES FROM "qmon-sw" WITH KEY = "device";
+--SHOW TAG VALUES FROM "qmon-sw" ;
+
+SHOW TAG VALUES FROM "qmon-sw" WITH KEY = "/interfaces/interface/@name";
+
+SHOW FIELD KEYS FROM "qmon-sw";
+
+select * from "qmon-sw" limit 2;
+
+--select "/interface-qstat-info/interface-qstat-info/eq", 
+--       "/interface-qstat-info/interface-qstat-info/interface-qstat-detail-entries/queue",
+--       "/interface-qstat-info/interface-qstat-info/index", 
+--       "/interface-qstat-info/interface-qstat-info/interface-qstat-detail-entries/peakBufferOccupancy" 
+--       from "qmon-sw" 
+--       where "device" = '10.48.188.97' and "/interface-qstat-info/interface-qstat-info/ifname" = 'et-0/0/53' ;
+
+select "/interface-qstat-info/interface-qstat-info/eq", 
+       "/interface-qstat-info/interface-qstat-info/interface-qstat-detail-entries/queue",
+       "/interface-qstat-info/interface-qstat-info/index", 
+       "/interface-qstat-info/interface-qstat-info/interface-qstat-detail-entries/peakBufferOccupancy" 
+       from "qmon-sw" 
+       where "device" = '10.48.188.97' and "/interface-qstat-info/interface-qstat-info/ifname" = 'et-0/0/53' ;
+
+
+EOM

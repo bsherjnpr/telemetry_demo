@@ -9,11 +9,10 @@ SHOW MEASUREMENTS;
 
 SHOW TAG KEYS;
 
-SHOW TAG VALUES FROM "interfaces" WITH KEY = "device";
+SHOW TAG VALUES FROM "events" WITH KEY = "device";
 
-SHOW TAG VALUES FROM "interfaces" WITH KEY = "/interfaces/interface/@name";
+SHOW FIELD KEYS FROM "events";
 
-SHOW FIELD KEYS FROM "interfaces";
-
+select * from events limit 5;
 
 EOM
