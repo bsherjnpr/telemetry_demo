@@ -12,10 +12,11 @@
       }
     ]
   },
+  "description": "/junos/system/linecard/qmon-sw",
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1619201659564,
+  "iteration": 1619444842332,
   "links": [],
   "panels": [
     {
@@ -889,7 +890,7 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "10.48.188.9",
           "value": "10.48.188.9"
         },
@@ -917,7 +918,7 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "et-0/0/10",
           "value": "et-0/0/10"
         },
@@ -950,7 +951,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "qmon-sw",
+  "title": "/junos/system/linecard/qmon-sw",
   "uid": "mqbbNRrMz",
-  "version": 4
+  "version": 1
 }
