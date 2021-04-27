@@ -1,12 +1,12 @@
 #!/bin/bash
 
 ## Image and container
-export INFLUX_VERSION=1.8.4-alpine
+export INFLUX_CONTAINER=influxdb:1.8.4
+export INFLUX_PORT=8186
 
+export TELEGRAF_CONTAINER=telegraf:1.18.1
 
-export MAIN_CONTAINER_NAME=opennti_con
+export GRAFANA_CONTAINER=grafana/grafana:7.5.4
+export GRAFANA_PORT=3300
 
-export INPUT_JTI_DIR=plugins/input-jti
-export INPUT_JTI_IMAGE_NAME=juniper/open-nti-input-jti
-export INPUT_JTI_CONTAINER_NAME=opennti_input_jti
 
