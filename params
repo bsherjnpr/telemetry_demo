@@ -2,11 +2,13 @@
 
 ## Image and container
 export INFLUX_CONTAINER=influxdb:1.8.4
-export INFLUX_PORT=8186
+export INFLUX_PORT=8186	#default = 8086
 
 export TELEGRAF_CONTAINER=telegraf:1.18.1
 
 export GRAFANA_CONTAINER=grafana/grafana:7.5.4
-export GRAFANA_PORT=3300
+export GRAFANA_PORT=3300 #default = 3000
 
+export CHRONOGRAF_CONTAINER=chronograf:1.8.8
+export CHRONOGRAF_PORT=8889 #default = 8888
 

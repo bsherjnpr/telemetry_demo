@@ -3,10 +3,14 @@
 #Chronograf inage for influxdb2:
 #docker run -d --rm --name chronograf -p 8888:8888 -v $PWD:/var/lib/chronograf quay.io/influxdb/chronograf:1.8.10
 
+set -x
+
+source ../params
+
 #Chronograph image for influxdb 1.8
 docker run -d --rm --name chronograf \
 	--net=influxdb \
-       	-p 8888:8888 \
+       	-p $CHRONOGRAF_PORT:8888 \
 	-v $PWD/data:/var/lib/chronograf \
-       	chronograf:1.8.8 \
+       	$CHRONOGRAF_CONTAINER \
 	--influxdb-url=http://influxdb:8086
