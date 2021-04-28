@@ -1,0 +1,309 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "",
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "iteration": 1619566403919,
+  "links": [],
+  "panels": [
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 13,
+        "w": 20,
+        "x": 0,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 2,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "[[tag_/components/component/properties/property/@name]]",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "select  mean(\"/components/component/properties/property/state/value\") \nfrom \"/junos/system/linecard/npu/memory\" \nwhere device = '$device_npu_memory' and  \"/components/component/@name\" = '$fpc_npu' and $timeFilter \ngroup by  time($__interval),  \"/components/component/properties/property/@name\"  fill(none)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "/junos/system/linecard/npu/memory $device_npu_memory $fpc_npu",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:64",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:65",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "schemaVersion": 27,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "10.161.35.118",
+          "value": "10.161.35.118"
+        },
+        "datasource": null,
+        "definition": "SHOW TAG VALUES FROM \"/junos/system/linecard/npu/memory\" WITH KEY = \"device\"",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "device",
+        "multi": false,
+        "name": "device_npu_memory",
+        "options": [
+          {
+            "selected": true,
+            "text": "10.161.35.118",
+            "value": "10.161.35.118"
+          }
+        ],
+        "query": "SHOW TAG VALUES FROM \"/junos/system/linecard/npu/memory\" WITH KEY = \"device\"",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "FPC0:NPU22",
+          "value": "FPC0:NPU22"
+        },
+        "datasource": null,
+        "definition": "SHOW TAG VALUES FROM \"/junos/system/linecard/npu/memory\" WITH KEY = \"/components/component/@name\"",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "FPC:NPU",
+        "multi": false,
+        "name": "fpc_npu",
+        "options": [
+          {
+            "selected": false,
+            "text": "FPC0:NPU16",
+            "value": "FPC0:NPU16"
+          },
+          {
+            "selected": false,
+            "text": "FPC0:NPU17",
+            "value": "FPC0:NPU17"
+          },
+          {
+            "selected": false,
+            "text": "FPC0:NPU18",
+            "value": "FPC0:NPU18"
+          },
+          {
+            "selected": false,
+            "text": "FPC0:NPU19",
+            "value": "FPC0:NPU19"
+          },
+          {
+            "selected": false,
+            "text": "FPC0:NPU20",
+            "value": "FPC0:NPU20"
+          },
+          {
+            "selected": false,
+            "text": "FPC0:NPU21",
+            "value": "FPC0:NPU21"
+          },
+          {
+            "selected": true,
+            "text": "FPC0:NPU22",
+            "value": "FPC0:NPU22"
+          },
+          {
+            "selected": false,
+            "text": "FPC0:NPU23",
+            "value": "FPC0:NPU23"
+          },
+          {
+            "selected": false,
+            "text": "FPC0:NPU24",
+            "value": "FPC0:NPU24"
+          },
+          {
+            "selected": false,
+            "text": "FPC0:NPU25",
+            "value": "FPC0:NPU25"
+          },
+          {
+            "selected": false,
+            "text": "FPC0:NPU26",
+            "value": "FPC0:NPU26"
+          },
+          {
+            "selected": false,
+            "text": "FPC0:NPU27",
+            "value": "FPC0:NPU27"
+          },
+          {
+            "selected": false,
+            "text": "FPC0:NPU28",
+            "value": "FPC0:NPU28"
+          },
+          {
+            "selected": false,
+            "text": "FPC0:NPU29",
+            "value": "FPC0:NPU29"
+          },
+          {
+            "selected": false,
+            "text": "FPC0:NPU30",
+            "value": "FPC0:NPU30"
+          },
+          {
+            "selected": false,
+            "text": "FPC0:NPU31",
+            "value": "FPC0:NPU31"
+          }
+        ],
+        "query": "SHOW TAG VALUES FROM \"/junos/system/linecard/npu/memory\" WITH KEY = \"/components/component/@name\"",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "/junos/system/linecard/npu/memory",
+  "uid": "0VvuxtrGk",
+  "version": 2
+}
