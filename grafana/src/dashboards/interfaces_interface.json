@@ -9,6 +9,17 @@
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
         "type": "dashboard"
+      },
+      {
+        "datasource": "influxdb",
+        "enable": true,
+        "hide": false,
+        "iconColor": "rgba(255, 96, 96, 1)",
+        "name": "commit",
+        "query": "select device,\"/junos/events/event/message\" from \"events/commits\" where \"/junos/events/event/@id\" = 'UI_COMMIT_COMPLETED'",
+        "showIn": 0,
+        "tagsColumn": "/junos/events/event/message",
+        "textColumn": "message"
       }
     ]
   },
@@ -16,7 +27,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1619487054686,
+  "iteration": 1619573960933,
   "links": [],
   "panels": [
     {
@@ -1996,12 +2007,12 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Interfaces/interface",
   "uid": "xq8xKfuGA",
-  "version": 1
+  "version": 5
 }
