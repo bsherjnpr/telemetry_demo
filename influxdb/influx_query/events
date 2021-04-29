@@ -16,12 +16,16 @@ docker exec -i influxdb influx --database "telegraf" -precision "rfc3339" <<EOM
 --select * from events where "/junos/events/event/message" =~ /UI_COMMIT_COMPLETED/;
 
 --select "/junos/events/event/message" from events limit 10;
---select "/junos/events/event/message" from events;
 -- 2021-04-28T00:29:43.141608796Z UI_COMMIT_COMPLETED:  : commit complete 
 
-select device,"/junos/events/event/message" from events where "/junos/events/event/@id" = 'UI_COMMIT_COMPLETED' and "device" = '10.161.35.118';
+--select device,"/junos/events/event/message" from events where "/junos/events/event/@id" = 'UI_COMMIT_COMPLETED' and "device" = '10.161.35.118';
+
 --select "/junos/events/event/message" from events where "/junos/events/event/@id" = 'UI_COMMIT_COMPLETED';
 
 -- SHOW TAG VALUES FROM "events" with key = "device" where "/junos/events/event/@id" = 'UI_COMMIT_COMPLETED';
+
+--select "/junos/events/event/message" from events;
+
+select device,"/junos/events/event/message" from "events" where "/junos/events/event/@id" =~ /^RPD_BGP_NEIGHBOR_STATE_CHANGED|^BGP_RESET_PENDING_CONNECTION|^BGP_CONNECT_FAILED/
 
 EOM

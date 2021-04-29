@@ -23,7 +23,7 @@
       }
     ]
   },
-  "description": "Interfaces/interface",
+  "description": "/interfaces/interface",
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
@@ -2012,7 +2012,7 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Interfaces/interface",
+  "title": "/interfaces/interface",
   "uid": "xq8xKfuGA",
   "version": 5
 }
