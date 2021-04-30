@@ -20,13 +20,24 @@
         "showIn": 0,
         "tagsColumn": "/junos/events/event/message",
         "textColumn": "message"
+      },
+      {
+        "datasource": "influxdb",
+        "enable": false,
+        "hide": false,
+        "iconColor": "rgba(255, 96, 96, 1)",
+        "name": "Commit",
+        "query": "select device,\"/junos/events/event/message\" from \"events/commits\" where \"/junos/events/event/@id\" = 'UI_COMMIT_COMPLETED'",
+        "showIn": 0,
+        "tagsColumn": "/junos/events/event/message",
+        "textColumn": "message"
       }
     ]
   },
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1619707173667,
+  "iteration": 1619797974739,
   "links": [],
   "panels": [
     {
@@ -841,12 +852,12 @@
     ]
   },
   "time": {
-    "from": "2021-04-29T12:19:08.506Z",
-    "to": "2021-04-29T12:28:01.918Z"
+    "from": "now-3h",
+    "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "/network-instances/network-instance/protocols/protocol/bgp",
   "uid": "gfOnTA9Gz",
-  "version": 7
+  "version": 8
 }

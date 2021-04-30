@@ -47,9 +47,13 @@ EOM
 #  "prefix": "components/component/properties/property[name=cpu-utilization-interrupt]",
 
 
-echo -e "\n===== Field keys from Measurements ====="
-$INFLUX <<EOM
-select "/components/component/@name","/components/component/properties/property/state/value"::float from "$MEASUREMENT" where "/components/component/properties/property/@name" = 'cpu-utilization-total';
-EOM
+#echo -e "\n===== CPU from Measurements ====="
+#$INFLUX <<EOM
+#select "/components/component/@name","/components/component/properties/property/state/value" from "$MEASUREMENT" where "/components/component/properties/property/@name" = 'cpu-utilization-total';
+#EOM
 
+echo -e "\n===== CPU from Measurements ====="
+$INFLUX <<EOM
+select "/components/component/properties/property/state/value::float" from "$MEASUREMENT" where "/components/component/properties/property/@name" = 'cpu-utilization-total';
+EOM
 
