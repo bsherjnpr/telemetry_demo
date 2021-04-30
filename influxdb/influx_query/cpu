@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# https://docs.influxdata.com/influxdb/v1.8/query_language/explore-schema/
+
+#set -x
+
+INFLUX="docker exec -i influxdb influx --database telegraf -precision rfc3339"
+MEASUREMENT="/components"
+
+
+echo -e "\n===== Measurements ====="
+$INFLUX <<EOM
+SHOW MEASUREMENTS;
+EOM
+
+echo -e "\n===== TAG keys from Measurements ====="
+$INFLUX <<EOM
+SHOW TAG KEYS from "$MEASUREMENT";
+EOM
+
+echo -e "\n===== tag values from measurements ====="
+$INFLUX <<EOM
+SHOW TAG VALUES FROM "$MEASUREMENT" with KEY = "/components/component/@name";
+SHOW TAG VALUES FROM "$MEASUREMENT" with KEY = "/components/component/properties/property/@name";
+SHOW TAG VALUES FROM "$MEASUREMENT" with KEY = "/components/component/transceiver/physical-channels/channel/@index";
+EOM
+
+echo -e "\n===== Field keys from Measurements ====="
+$INFLUX <<EOM
+SHOW FIELD KEYS from "$MEASUREMENT";
+EOM
+
+#  "prefix": "components/component[name=Routing Engine0]/properties/property[name=CPU Temperature]",
+#  "prefix": "components/component[name=Routing Engine0]/properties/property[name=cpu-utilization-kernel]",
+#  "prefix": "components/component[name=Routing Engine0]/properties/property[name=cpu-utilization-interrupt]",
+#  "prefix": "components/component[name=Routing Engine0]/properties/property[name=cpu-utilization-background]",
+#  "prefix": "components/component[name=Routing Engine0]/properties/property[name=cpu-utilization-idle]",
+#  "prefix": "components/component[name=Routing Engine0]/properties/property[name=cpu-utilization-total]",
+#  "prefix": "components/component[name=Routing Engine0]/properties/property[name=cpu-utilization-user]",
+#  "prefix": "components/component[name=Routing Engine0]/properties/property[name=temperature-cpu]",
+#  "prefix": "components/component/properties/property[name=CPU Temperature]",
+#  "prefix": "components/component/properties/property[name=cpu-utilization-background]",
+#  "prefix": "components/component/properties/property[name=cpu-utilization-idle]",
+#  "prefix": "components/component/properties/property[name=cpu-utilization-total]",
+#  "prefix": "components/component/properties/property[name=cpu-utilization-kernel]",
+#  "prefix": "components/component/properties/property[name=cpu-utilization-user]",
+#  "prefix": "components/component/properties/property[name=cpu-utilization-interrupt]",
+
+
+echo -e "\n===== Field keys from Measurements ====="
+$INFLUX <<EOM
+select "/components/component/@name","/components/component/properties/property/state/value"::float from "$MEASUREMENT" where "/components/component/properties/property/@name" = 'cpu-utilization-total';
+EOM
+
+
