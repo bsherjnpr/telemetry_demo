@@ -52,8 +52,53 @@ EOM
 #select "/components/component/@name","/components/component/properties/property/state/value" from "$MEASUREMENT" where "/components/component/properties/property/@name" = 'cpu-utilization-total';
 #EOM
 
-echo -e "\n===== CPU from Measurements ====="
+#echo -e "\n===== CPU from Measurements ====="
+#$INFLUX <<EOM
+#select mean("/components/component/properties/property/state/value_f") as "value" 
+#from "/components" 
+#where "/components/component/properties/property/@name" =~ /^cpu-utilization/ 
+#GROUP BY "/components/component/properties/property/@name"
+#EOM
+
+#/components/component/properties/property/@name                    temperature
+#/components/component/properties/property/@name                    temperature-ambient
+#/components/component/properties/property/@name                    temperature-cpu
+#/components/component/properties/property/@name                    temperature-status
+
+#echo -e "\n===== temperature ====="
+#$INFLUX <<EOM
+#select "/components/component/properties/property/state/value_f" as "value" 
+#from "/components" 
+#where "/components/component/properties/property/@name" =~ /^temperature/ 
+#GROUP BY "/components/component/properties/property/@name"
+#EOM
+
+#echo -e "\n===== temperature ====="
+#$INFLUX <<EOM
+#select "/components/component/properties/property/state/value_f" as "value" 
+#from "/components" 
+#where "/components/component/properties/property/@name" =~ /^Ambient/ 
+#GROUP BY "/components/component/properties/property/@name"
+#EOM
+
+#echo -e "\n===== power ====="
+#$INFLUX <<EOM
+#select "/components/component/properties/property/state/value_f" as "value" 
+#from "/components" 
+#where "/components/component/properties/property/@name" =~ /^power/ 
+#GROUP BY "/components/component/properties/property/@name"
+#EOM
+
+echo -e "\n===== wavelength ====="
 $INFLUX <<EOM
-select "/components/component/properties/property/state/value::float" from "$MEASUREMENT" where "/components/component/properties/property/@name" = 'cpu-utilization-total';
+select "/components/component/@name", "/components/component/properties/property/state/value"
+from "/components" 
+where "/components/component/properties/property/@name" = 'wavelength' limit 10
 EOM
 
+echo -e "\n===== wavelength ====="
+$INFLUX <<EOM
+select *
+from "/components" 
+where "/components/component/properties/property/@name" = 'wavelength' limit 10
+EOM

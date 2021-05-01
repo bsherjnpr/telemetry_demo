@@ -1,0 +1,1303 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "iteration": 1619837987007,
+  "links": [],
+  "panels": [
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 2,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "queue [[tag_/interfaces/interface/state/counters/out-queue/@queue-number]]",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT non_negative_derivative(mean(\"/interfaces/interface/state/counters/out-queue/bytes\"),1s)\n FROM \"/junos/system/linecard/interface/queue\"\nWHERE \"device\"='$device_queue' and \"/interfaces/interface/@name\"='$interface_queue' and $timeFilter  \nGROUP BY \"/interfaces/interface/state/counters/out-queue/@queue-number\", time($__interval) FILL(none)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "out queue bytes",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 3,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "queue [[tag_/interfaces/interface/state/counters/out-queue/@queue-number]]",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT non_negative_derivative(mean(\"/interfaces/interface/state/counters/out-queue/pkts\"),1s)\n FROM \"/junos/system/linecard/interface/queue\"\nWHERE \"device\"='$device_queue' and \"/interfaces/interface/@name\"='$interface_queue' and $timeFilter  \nGROUP BY \"/interfaces/interface/state/counters/out-queue/@queue-number\", time($__interval) FILL(none)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "out queue pkts",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:4569",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:4570",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "hiddenSeries": false,
+      "id": 4,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "queue [[tag_/interfaces/interface/state/counters/out-queue/@queue-number]]",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT non_negative_derivative(mean(\"/interfaces/interface/state/counters/out-queue/tail-drop-bytes\"),1s)\n FROM \"/junos/system/linecard/interface/queue\"\nWHERE \"device\"='$device_queue' and \"/interfaces/interface/@name\"='$interface_queue' and $timeFilter  \nGROUP BY \"/interfaces/interface/state/counters/out-queue/@queue-number\", time($__interval) FILL(none)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "tail-drop-bytes",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:4657",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:4658",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 9
+      },
+      "hiddenSeries": false,
+      "id": 5,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "queue [[tag_/interfaces/interface/state/counters/out-queue/@queue-number]]",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT non_negative_derivative(mean(\"/interfaces/interface/state/counters/out-queue/tail-drop-pkts\"),1s)\n FROM \"/junos/system/linecard/interface/queue\"\nWHERE \"device\"='$device_queue' and \"/interfaces/interface/@name\"='$interface_queue' and $timeFilter  \nGROUP BY \"/interfaces/interface/state/counters/out-queue/@queue-number\", time($__interval) FILL(none)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "tail-drop-pkts",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:4657",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:4658",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 27,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "10.161.35.118",
+          "value": "10.161.35.118"
+        },
+        "datasource": null,
+        "definition": "SHOW TAG VALUES FROM \"/junos/system/linecard/interface/queue\" WITH KEY = \"device\"",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Device",
+        "multi": false,
+        "name": "device_queue",
+        "options": [
+          {
+            "selected": true,
+            "text": "10.161.35.118",
+            "value": "10.161.35.118"
+          }
+        ],
+        "query": "SHOW TAG VALUES FROM \"/junos/system/linecard/interface/queue\" WITH KEY = \"device\"",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "et-0/0/0",
+          "value": "et-0/0/0"
+        },
+        "datasource": null,
+        "definition": "SHOW TAG VALUES FROM \"/junos/system/linecard/interface/queue\" WITH KEY = \"/interfaces/interface/@name\" where device = '10.161.35.118'",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Interface",
+        "multi": false,
+        "name": "interface_queue",
+        "options": [
+          {
+            "selected": false,
+            "text": ".dlb16",
+            "value": ".dlb16"
+          },
+          {
+            "selected": false,
+            "text": ".dlb17",
+            "value": ".dlb17"
+          },
+          {
+            "selected": false,
+            "text": ".dlb18",
+            "value": ".dlb18"
+          },
+          {
+            "selected": false,
+            "text": ".dlb19",
+            "value": ".dlb19"
+          },
+          {
+            "selected": false,
+            "text": ".dlb20",
+            "value": ".dlb20"
+          },
+          {
+            "selected": false,
+            "text": ".dlb21",
+            "value": ".dlb21"
+          },
+          {
+            "selected": false,
+            "text": ".dlb22",
+            "value": ".dlb22"
+          },
+          {
+            "selected": false,
+            "text": ".dlb23",
+            "value": ".dlb23"
+          },
+          {
+            "selected": false,
+            "text": ".dlb24",
+            "value": ".dlb24"
+          },
+          {
+            "selected": false,
+            "text": ".dlb25",
+            "value": ".dlb25"
+          },
+          {
+            "selected": false,
+            "text": ".dlb26",
+            "value": ".dlb26"
+          },
+          {
+            "selected": false,
+            "text": ".dlb27",
+            "value": ".dlb27"
+          },
+          {
+            "selected": false,
+            "text": ".dlb28",
+            "value": ".dlb28"
+          },
+          {
+            "selected": false,
+            "text": ".dlb29",
+            "value": ".dlb29"
+          },
+          {
+            "selected": false,
+            "text": ".dlb30",
+            "value": ".dlb30"
+          },
+          {
+            "selected": false,
+            "text": ".dlb31",
+            "value": ".dlb31"
+          },
+          {
+            "selected": false,
+            "text": ".hif16",
+            "value": ".hif16"
+          },
+          {
+            "selected": false,
+            "text": ".hif17",
+            "value": ".hif17"
+          },
+          {
+            "selected": false,
+            "text": ".hif18",
+            "value": ".hif18"
+          },
+          {
+            "selected": false,
+            "text": ".hif19",
+            "value": ".hif19"
+          },
+          {
+            "selected": false,
+            "text": ".hif20",
+            "value": ".hif20"
+          },
+          {
+            "selected": false,
+            "text": ".hif21",
+            "value": ".hif21"
+          },
+          {
+            "selected": false,
+            "text": ".hif22",
+            "value": ".hif22"
+          },
+          {
+            "selected": false,
+            "text": ".hif23",
+            "value": ".hif23"
+          },
+          {
+            "selected": false,
+            "text": ".hif24",
+            "value": ".hif24"
+          },
+          {
+            "selected": false,
+            "text": ".hif25",
+            "value": ".hif25"
+          },
+          {
+            "selected": false,
+            "text": ".hif26",
+            "value": ".hif26"
+          },
+          {
+            "selected": false,
+            "text": ".hif27",
+            "value": ".hif27"
+          },
+          {
+            "selected": false,
+            "text": ".hif28",
+            "value": ".hif28"
+          },
+          {
+            "selected": false,
+            "text": ".hif29",
+            "value": ".hif29"
+          },
+          {
+            "selected": false,
+            "text": ".hif30",
+            "value": ".hif30"
+          },
+          {
+            "selected": false,
+            "text": ".hif31",
+            "value": ".hif31"
+          },
+          {
+            "selected": false,
+            "text": ".lcpu16",
+            "value": ".lcpu16"
+          },
+          {
+            "selected": false,
+            "text": ".lcpu17",
+            "value": ".lcpu17"
+          },
+          {
+            "selected": false,
+            "text": ".lcpu18",
+            "value": ".lcpu18"
+          },
+          {
+            "selected": false,
+            "text": ".lcpu19",
+            "value": ".lcpu19"
+          },
+          {
+            "selected": false,
+            "text": ".lcpu20",
+            "value": ".lcpu20"
+          },
+          {
+            "selected": false,
+            "text": ".lcpu21",
+            "value": ".lcpu21"
+          },
+          {
+            "selected": false,
+            "text": ".lcpu22",
+            "value": ".lcpu22"
+          },
+          {
+            "selected": false,
+            "text": ".lcpu23",
+            "value": ".lcpu23"
+          },
+          {
+            "selected": false,
+            "text": ".lcpu24",
+            "value": ".lcpu24"
+          },
+          {
+            "selected": false,
+            "text": ".lcpu25",
+            "value": ".lcpu25"
+          },
+          {
+            "selected": false,
+            "text": ".lcpu26",
+            "value": ".lcpu26"
+          },
+          {
+            "selected": false,
+            "text": ".lcpu27",
+            "value": ".lcpu27"
+          },
+          {
+            "selected": false,
+            "text": ".lcpu28",
+            "value": ".lcpu28"
+          },
+          {
+            "selected": false,
+            "text": ".lcpu29",
+            "value": ".lcpu29"
+          },
+          {
+            "selected": false,
+            "text": ".lcpu30",
+            "value": ".lcpu30"
+          },
+          {
+            "selected": false,
+            "text": ".lcpu31",
+            "value": ".lcpu31"
+          },
+          {
+            "selected": false,
+            "text": ".rhi16",
+            "value": ".rhi16"
+          },
+          {
+            "selected": false,
+            "text": ".rhi17",
+            "value": ".rhi17"
+          },
+          {
+            "selected": false,
+            "text": ".rhi18",
+            "value": ".rhi18"
+          },
+          {
+            "selected": false,
+            "text": ".rhi19",
+            "value": ".rhi19"
+          },
+          {
+            "selected": false,
+            "text": ".rhi20",
+            "value": ".rhi20"
+          },
+          {
+            "selected": false,
+            "text": ".rhi21",
+            "value": ".rhi21"
+          },
+          {
+            "selected": false,
+            "text": ".rhi22",
+            "value": ".rhi22"
+          },
+          {
+            "selected": false,
+            "text": ".rhi23",
+            "value": ".rhi23"
+          },
+          {
+            "selected": false,
+            "text": ".rhi24",
+            "value": ".rhi24"
+          },
+          {
+            "selected": false,
+            "text": ".rhi25",
+            "value": ".rhi25"
+          },
+          {
+            "selected": false,
+            "text": ".rhi26",
+            "value": ".rhi26"
+          },
+          {
+            "selected": false,
+            "text": ".rhi27",
+            "value": ".rhi27"
+          },
+          {
+            "selected": false,
+            "text": ".rhi28",
+            "value": ".rhi28"
+          },
+          {
+            "selected": false,
+            "text": ".rhi29",
+            "value": ".rhi29"
+          },
+          {
+            "selected": false,
+            "text": ".rhi30",
+            "value": ".rhi30"
+          },
+          {
+            "selected": false,
+            "text": ".rhi31",
+            "value": ".rhi31"
+          },
+          {
+            "selected": false,
+            "text": "ae0",
+            "value": "ae0"
+          },
+          {
+            "selected": false,
+            "text": "ae34",
+            "value": "ae34"
+          },
+          {
+            "selected": false,
+            "text": "ae40",
+            "value": "ae40"
+          },
+          {
+            "selected": false,
+            "text": "ae41",
+            "value": "ae41"
+          },
+          {
+            "selected": false,
+            "text": "ae42",
+            "value": "ae42"
+          },
+          {
+            "selected": false,
+            "text": "ae43",
+            "value": "ae43"
+          },
+          {
+            "selected": true,
+            "text": "et-0/0/0",
+            "value": "et-0/0/0"
+          },
+          {
+            "selected": false,
+            "text": "et-0/0/1",
+            "value": "et-0/0/1"
+          },
+          {
+            "selected": false,
+            "text": "et-0/0/2",
+            "value": "et-0/0/2"
+          },
+          {
+            "selected": false,
+            "text": "et-0/0/3",
+            "value": "et-0/0/3"
+          },
+          {
+            "selected": false,
+            "text": "et-0/0/4:0",
+            "value": "et-0/0/4:0"
+          },
+          {
+            "selected": false,
+            "text": "et-0/0/4:1",
+            "value": "et-0/0/4:1"
+          },
+          {
+            "selected": false,
+            "text": "et-0/0/5",
+            "value": "et-0/0/5"
+          },
+          {
+            "selected": false,
+            "text": "et-0/0/6",
+            "value": "et-0/0/6"
+          },
+          {
+            "selected": false,
+            "text": "et-0/0/7:0",
+            "value": "et-0/0/7:0"
+          },
+          {
+            "selected": false,
+            "text": "et-0/0/7:1",
+            "value": "et-0/0/7:1"
+          },
+          {
+            "selected": false,
+            "text": "et-0/0/8:0",
+            "value": "et-0/0/8:0"
+          },
+          {
+            "selected": false,
+            "text": "et-0/0/8:1",
+            "value": "et-0/0/8:1"
+          },
+          {
+            "selected": false,
+            "text": "et-0/0/9:0",
+            "value": "et-0/0/9:0"
+          },
+          {
+            "selected": false,
+            "text": "et-0/0/9:1",
+            "value": "et-0/0/9:1"
+          },
+          {
+            "selected": false,
+            "text": "et-0/1/0",
+            "value": "et-0/1/0"
+          },
+          {
+            "selected": false,
+            "text": "et-0/1/1:0",
+            "value": "et-0/1/1:0"
+          },
+          {
+            "selected": false,
+            "text": "et-0/1/1:1",
+            "value": "et-0/1/1:1"
+          },
+          {
+            "selected": false,
+            "text": "et-0/1/2:0",
+            "value": "et-0/1/2:0"
+          },
+          {
+            "selected": false,
+            "text": "et-0/1/2:1",
+            "value": "et-0/1/2:1"
+          },
+          {
+            "selected": false,
+            "text": "et-0/1/3:0",
+            "value": "et-0/1/3:0"
+          },
+          {
+            "selected": false,
+            "text": "et-0/1/3:1",
+            "value": "et-0/1/3:1"
+          },
+          {
+            "selected": false,
+            "text": "et-0/1/4:0",
+            "value": "et-0/1/4:0"
+          },
+          {
+            "selected": false,
+            "text": "et-0/1/4:1",
+            "value": "et-0/1/4:1"
+          },
+          {
+            "selected": false,
+            "text": "et-0/1/5:0",
+            "value": "et-0/1/5:0"
+          },
+          {
+            "selected": false,
+            "text": "et-0/1/5:1",
+            "value": "et-0/1/5:1"
+          },
+          {
+            "selected": false,
+            "text": "et-0/1/6:0",
+            "value": "et-0/1/6:0"
+          },
+          {
+            "selected": false,
+            "text": "et-0/1/6:1",
+            "value": "et-0/1/6:1"
+          },
+          {
+            "selected": false,
+            "text": "et-0/1/7:0",
+            "value": "et-0/1/7:0"
+          },
+          {
+            "selected": false,
+            "text": "et-0/1/7:1",
+            "value": "et-0/1/7:1"
+          },
+          {
+            "selected": false,
+            "text": "et-0/1/8",
+            "value": "et-0/1/8"
+          },
+          {
+            "selected": false,
+            "text": "et-0/1/9",
+            "value": "et-0/1/9"
+          },
+          {
+            "selected": false,
+            "text": "et-1/0/0",
+            "value": "et-1/0/0"
+          },
+          {
+            "selected": false,
+            "text": "et-1/0/1",
+            "value": "et-1/0/1"
+          },
+          {
+            "selected": false,
+            "text": "et-1/0/2:0",
+            "value": "et-1/0/2:0"
+          },
+          {
+            "selected": false,
+            "text": "et-1/0/2:1",
+            "value": "et-1/0/2:1"
+          },
+          {
+            "selected": false,
+            "text": "et-1/0/3:0",
+            "value": "et-1/0/3:0"
+          },
+          {
+            "selected": false,
+            "text": "et-1/0/3:1",
+            "value": "et-1/0/3:1"
+          },
+          {
+            "selected": false,
+            "text": "et-1/0/4",
+            "value": "et-1/0/4"
+          },
+          {
+            "selected": false,
+            "text": "et-1/0/5:0",
+            "value": "et-1/0/5:0"
+          },
+          {
+            "selected": false,
+            "text": "et-1/0/5:1",
+            "value": "et-1/0/5:1"
+          },
+          {
+            "selected": false,
+            "text": "et-1/0/6:0",
+            "value": "et-1/0/6:0"
+          },
+          {
+            "selected": false,
+            "text": "et-1/0/6:1",
+            "value": "et-1/0/6:1"
+          },
+          {
+            "selected": false,
+            "text": "et-1/0/7:0",
+            "value": "et-1/0/7:0"
+          },
+          {
+            "selected": false,
+            "text": "et-1/0/7:1",
+            "value": "et-1/0/7:1"
+          },
+          {
+            "selected": false,
+            "text": "et-1/0/8:0",
+            "value": "et-1/0/8:0"
+          },
+          {
+            "selected": false,
+            "text": "et-1/0/8:1",
+            "value": "et-1/0/8:1"
+          },
+          {
+            "selected": false,
+            "text": "et-1/0/9:0",
+            "value": "et-1/0/9:0"
+          },
+          {
+            "selected": false,
+            "text": "et-1/0/9:1",
+            "value": "et-1/0/9:1"
+          },
+          {
+            "selected": false,
+            "text": "et-1/1/0:0",
+            "value": "et-1/1/0:0"
+          },
+          {
+            "selected": false,
+            "text": "et-1/1/0:1",
+            "value": "et-1/1/0:1"
+          },
+          {
+            "selected": false,
+            "text": "et-1/1/1:0",
+            "value": "et-1/1/1:0"
+          },
+          {
+            "selected": false,
+            "text": "et-1/1/1:1",
+            "value": "et-1/1/1:1"
+          },
+          {
+            "selected": false,
+            "text": "et-1/1/2:0",
+            "value": "et-1/1/2:0"
+          },
+          {
+            "selected": false,
+            "text": "et-1/1/2:1",
+            "value": "et-1/1/2:1"
+          },
+          {
+            "selected": false,
+            "text": "et-1/1/3:0",
+            "value": "et-1/1/3:0"
+          },
+          {
+            "selected": false,
+            "text": "et-1/1/3:1",
+            "value": "et-1/1/3:1"
+          },
+          {
+            "selected": false,
+            "text": "et-1/1/4:0",
+            "value": "et-1/1/4:0"
+          },
+          {
+            "selected": false,
+            "text": "et-1/1/4:1",
+            "value": "et-1/1/4:1"
+          },
+          {
+            "selected": false,
+            "text": "et-1/1/5:0",
+            "value": "et-1/1/5:0"
+          },
+          {
+            "selected": false,
+            "text": "et-1/1/5:1",
+            "value": "et-1/1/5:1"
+          },
+          {
+            "selected": false,
+            "text": "et-1/1/6:0",
+            "value": "et-1/1/6:0"
+          },
+          {
+            "selected": false,
+            "text": "et-1/1/6:1",
+            "value": "et-1/1/6:1"
+          },
+          {
+            "selected": false,
+            "text": "et-1/1/7:0",
+            "value": "et-1/1/7:0"
+          },
+          {
+            "selected": false,
+            "text": "et-1/1/7:1",
+            "value": "et-1/1/7:1"
+          },
+          {
+            "selected": false,
+            "text": "et-1/1/8:0",
+            "value": "et-1/1/8:0"
+          },
+          {
+            "selected": false,
+            "text": "et-1/1/8:1",
+            "value": "et-1/1/8:1"
+          },
+          {
+            "selected": false,
+            "text": "et-1/1/9:0",
+            "value": "et-1/1/9:0"
+          },
+          {
+            "selected": false,
+            "text": "et-1/1/9:1",
+            "value": "et-1/1/9:1"
+          },
+          {
+            "selected": false,
+            "text": "pfh-0/0/0",
+            "value": "pfh-0/0/0"
+          }
+        ],
+        "query": "SHOW TAG VALUES FROM \"/junos/system/linecard/interface/queue\" WITH KEY = \"/interfaces/interface/@name\" where device = '10.161.35.118'",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-3h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "/junos/system/linecard/interface/queue",
+  "uid": "F4NjYLrGz",
+  "version": 2
+}
