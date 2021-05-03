@@ -28,7 +28,8 @@ docker exec -i influxdb influx --database "telegraf" -precision "rfc3339" <<EOM
 
 -- select device,"/junos/events/event/message" from "events" where "/junos/events/event/@id" =~ /^RPD_BGP_NEIGHBOR_STATE_CHANGED|^BGP_RESET_PENDING_CONNECTION|^BGP_CONNECT_FAILED/
 
-select device,"/junos/events/event/message" from "events" where "/junos/events/event/@id" =~ /^RPD_ISIS_ADJDOWN|^RPD_ISIS_ADJUP/
+--select device,"/junos/events/event/message" from "events" where "/junos/events/event/@id" =~ /^RPD_ISIS_ADJDOWN|^RPD_ISIS_ADJUP/
+select * from "events" where "/junos/events/event/@id" =~ /^RPD_ISIS_ADJDOWN|^RPD_ISIS_ADJUP/
 
 
 --select "/junos/events/event/message" from "events" 

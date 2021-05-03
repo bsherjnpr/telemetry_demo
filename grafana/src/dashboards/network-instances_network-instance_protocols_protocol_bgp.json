@@ -16,7 +16,7 @@
         "hide": false,
         "iconColor": "#5794F2",
         "name": "BGP Neighbor",
-        "query": "select device,\"/junos/events/event/message\" from \"events\" where \"/junos/events/event/@id\" =~ /^RPD_BGP_NEIGHBOR_STATE_CHANGED|^BGP_RESET_PENDING_CONNECTION|^BGP_CONNECT_FAILED/",
+        "query": "select device,\"/junos/events/event/message\" from \"/junos/events\" where \"/junos/events/event/@id\" =~ /^RPD_BGP_NEIGHBOR_STATE_CHANGED|^BGP_RESET_PENDING_CONNECTION|^BGP_CONNECT_FAILED/",
         "showIn": 0,
         "tagsColumn": "/junos/events/event/message",
         "textColumn": "message"
@@ -27,7 +27,7 @@
         "hide": false,
         "iconColor": "rgba(255, 96, 96, 1)",
         "name": "Commit",
-        "query": "select device,\"/junos/events/event/message\" from \"events/commits\" where \"/junos/events/event/@id\" = 'UI_COMMIT_COMPLETED'",
+        "query": "select device,\"/junos/events/event/message\" from \"/junos/events\" where \"/junos/events/event/@id\" = 'UI_COMMIT_COMPLETED'",
         "showIn": 0,
         "tagsColumn": "/junos/events/event/message",
         "textColumn": "message"
@@ -37,7 +37,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1619797974739,
+  "iteration": 1620048802837,
   "links": [],
   "panels": [
     {
@@ -859,5 +859,5 @@
   "timezone": "",
   "title": "/network-instances/network-instance/protocols/protocol/bgp",
   "uid": "gfOnTA9Gz",
-  "version": 8
+  "version": 9
 }

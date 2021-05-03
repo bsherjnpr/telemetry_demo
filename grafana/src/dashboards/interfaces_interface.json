@@ -16,7 +16,7 @@
         "hide": false,
         "iconColor": "rgba(255, 96, 96, 1)",
         "name": "commit",
-        "query": "select device,\"/junos/events/event/message\" from \"events/commits\" where \"/junos/events/event/@id\" = 'UI_COMMIT_COMPLETED'",
+        "query": "select device,\"/junos/events/event/message\" from \"/junos/events\" where \"/junos/events/event/@id\" = 'UI_COMMIT_COMPLETED'",
         "showIn": 0,
         "tagsColumn": "/junos/events/event/message",
         "textColumn": "message"
@@ -27,7 +27,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1619573960933,
+  "iteration": 1620049451171,
   "links": [],
   "panels": [
     {
@@ -2014,5 +2014,5 @@
   "timezone": "browser",
   "title": "/interfaces/interface",
   "uid": "xq8xKfuGA",
-  "version": 5
+  "version": 8
 }
