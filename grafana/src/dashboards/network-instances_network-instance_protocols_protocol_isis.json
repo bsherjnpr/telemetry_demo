@@ -9,14 +9,24 @@
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
         "type": "dashboard"
+      },
+      {
+        "datasource": "influxdb",
+        "enable": true,
+        "hide": false,
+        "iconColor": "#96D98D",
+        "name": "ISIS_ADJ",
+        "query": "select device,\"/junos/events/event/message\" from \"events\" where \"/junos/events/event/@id\" =~ /^RPD_ISIS_ADJDOWN|^RPD_ISIS_ADJUP/",
+        "showIn": 0,
+        "tagsColumn": "/junos/events/event/message",
+        "textColumn": "message"
       }
     ]
   },
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 9,
-  "iteration": 1620004810637,
+  "iteration": 1620006377996,
   "links": [],
   "panels": [
     {
@@ -311,5 +321,5 @@
   "timezone": "",
   "title": "/network-instances/network-instance/protocols/protocol/isis",
   "uid": "j0BSYlrGz",
-  "version": 1
+  "version": 2
 }
