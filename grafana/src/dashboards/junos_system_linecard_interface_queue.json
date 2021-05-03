@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1619837987007,
+  "iteration": 1619910445905,
   "links": [],
   "panels": [
     {
@@ -569,11 +569,11 @@
         "allValue": null,
         "current": {
           "selected": true,
-          "text": "et-0/0/0",
-          "value": "et-0/0/0"
+          "text": "et-0/0/3",
+          "value": "et-0/0/3"
         },
         "datasource": null,
-        "definition": "SHOW TAG VALUES FROM \"/junos/system/linecard/interface/queue\" WITH KEY = \"/interfaces/interface/@name\" where device = '10.161.35.118'",
+        "definition": "SHOW TAG VALUES FROM \"/junos/system/linecard/interface/queue\" WITH KEY = \"/interfaces/interface/@name\" where device = '10.161.35.118' and \"/interfaces/interface/@name\" =~ /^\\w/",
         "description": null,
         "error": null,
         "hide": 0,
@@ -582,326 +582,6 @@
         "multi": false,
         "name": "interface_queue",
         "options": [
-          {
-            "selected": false,
-            "text": ".dlb16",
-            "value": ".dlb16"
-          },
-          {
-            "selected": false,
-            "text": ".dlb17",
-            "value": ".dlb17"
-          },
-          {
-            "selected": false,
-            "text": ".dlb18",
-            "value": ".dlb18"
-          },
-          {
-            "selected": false,
-            "text": ".dlb19",
-            "value": ".dlb19"
-          },
-          {
-            "selected": false,
-            "text": ".dlb20",
-            "value": ".dlb20"
-          },
-          {
-            "selected": false,
-            "text": ".dlb21",
-            "value": ".dlb21"
-          },
-          {
-            "selected": false,
-            "text": ".dlb22",
-            "value": ".dlb22"
-          },
-          {
-            "selected": false,
-            "text": ".dlb23",
-            "value": ".dlb23"
-          },
-          {
-            "selected": false,
-            "text": ".dlb24",
-            "value": ".dlb24"
-          },
-          {
-            "selected": false,
-            "text": ".dlb25",
-            "value": ".dlb25"
-          },
-          {
-            "selected": false,
-            "text": ".dlb26",
-            "value": ".dlb26"
-          },
-          {
-            "selected": false,
-            "text": ".dlb27",
-            "value": ".dlb27"
-          },
-          {
-            "selected": false,
-            "text": ".dlb28",
-            "value": ".dlb28"
-          },
-          {
-            "selected": false,
-            "text": ".dlb29",
-            "value": ".dlb29"
-          },
-          {
-            "selected": false,
-            "text": ".dlb30",
-            "value": ".dlb30"
-          },
-          {
-            "selected": false,
-            "text": ".dlb31",
-            "value": ".dlb31"
-          },
-          {
-            "selected": false,
-            "text": ".hif16",
-            "value": ".hif16"
-          },
-          {
-            "selected": false,
-            "text": ".hif17",
-            "value": ".hif17"
-          },
-          {
-            "selected": false,
-            "text": ".hif18",
-            "value": ".hif18"
-          },
-          {
-            "selected": false,
-            "text": ".hif19",
-            "value": ".hif19"
-          },
-          {
-            "selected": false,
-            "text": ".hif20",
-            "value": ".hif20"
-          },
-          {
-            "selected": false,
-            "text": ".hif21",
-            "value": ".hif21"
-          },
-          {
-            "selected": false,
-            "text": ".hif22",
-            "value": ".hif22"
-          },
-          {
-            "selected": false,
-            "text": ".hif23",
-            "value": ".hif23"
-          },
-          {
-            "selected": false,
-            "text": ".hif24",
-            "value": ".hif24"
-          },
-          {
-            "selected": false,
-            "text": ".hif25",
-            "value": ".hif25"
-          },
-          {
-            "selected": false,
-            "text": ".hif26",
-            "value": ".hif26"
-          },
-          {
-            "selected": false,
-            "text": ".hif27",
-            "value": ".hif27"
-          },
-          {
-            "selected": false,
-            "text": ".hif28",
-            "value": ".hif28"
-          },
-          {
-            "selected": false,
-            "text": ".hif29",
-            "value": ".hif29"
-          },
-          {
-            "selected": false,
-            "text": ".hif30",
-            "value": ".hif30"
-          },
-          {
-            "selected": false,
-            "text": ".hif31",
-            "value": ".hif31"
-          },
-          {
-            "selected": false,
-            "text": ".lcpu16",
-            "value": ".lcpu16"
-          },
-          {
-            "selected": false,
-            "text": ".lcpu17",
-            "value": ".lcpu17"
-          },
-          {
-            "selected": false,
-            "text": ".lcpu18",
-            "value": ".lcpu18"
-          },
-          {
-            "selected": false,
-            "text": ".lcpu19",
-            "value": ".lcpu19"
-          },
-          {
-            "selected": false,
-            "text": ".lcpu20",
-            "value": ".lcpu20"
-          },
-          {
-            "selected": false,
-            "text": ".lcpu21",
-            "value": ".lcpu21"
-          },
-          {
-            "selected": false,
-            "text": ".lcpu22",
-            "value": ".lcpu22"
-          },
-          {
-            "selected": false,
-            "text": ".lcpu23",
-            "value": ".lcpu23"
-          },
-          {
-            "selected": false,
-            "text": ".lcpu24",
-            "value": ".lcpu24"
-          },
-          {
-            "selected": false,
-            "text": ".lcpu25",
-            "value": ".lcpu25"
-          },
-          {
-            "selected": false,
-            "text": ".lcpu26",
-            "value": ".lcpu26"
-          },
-          {
-            "selected": false,
-            "text": ".lcpu27",
-            "value": ".lcpu27"
-          },
-          {
-            "selected": false,
-            "text": ".lcpu28",
-            "value": ".lcpu28"
-          },
-          {
-            "selected": false,
-            "text": ".lcpu29",
-            "value": ".lcpu29"
-          },
-          {
-            "selected": false,
-            "text": ".lcpu30",
-            "value": ".lcpu30"
-          },
-          {
-            "selected": false,
-            "text": ".lcpu31",
-            "value": ".lcpu31"
-          },
-          {
-            "selected": false,
-            "text": ".rhi16",
-            "value": ".rhi16"
-          },
-          {
-            "selected": false,
-            "text": ".rhi17",
-            "value": ".rhi17"
-          },
-          {
-            "selected": false,
-            "text": ".rhi18",
-            "value": ".rhi18"
-          },
-          {
-            "selected": false,
-            "text": ".rhi19",
-            "value": ".rhi19"
-          },
-          {
-            "selected": false,
-            "text": ".rhi20",
-            "value": ".rhi20"
-          },
-          {
-            "selected": false,
-            "text": ".rhi21",
-            "value": ".rhi21"
-          },
-          {
-            "selected": false,
-            "text": ".rhi22",
-            "value": ".rhi22"
-          },
-          {
-            "selected": false,
-            "text": ".rhi23",
-            "value": ".rhi23"
-          },
-          {
-            "selected": false,
-            "text": ".rhi24",
-            "value": ".rhi24"
-          },
-          {
-            "selected": false,
-            "text": ".rhi25",
-            "value": ".rhi25"
-          },
-          {
-            "selected": false,
-            "text": ".rhi26",
-            "value": ".rhi26"
-          },
-          {
-            "selected": false,
-            "text": ".rhi27",
-            "value": ".rhi27"
-          },
-          {
-            "selected": false,
-            "text": ".rhi28",
-            "value": ".rhi28"
-          },
-          {
-            "selected": false,
-            "text": ".rhi29",
-            "value": ".rhi29"
-          },
-          {
-            "selected": false,
-            "text": ".rhi30",
-            "value": ".rhi30"
-          },
-          {
-            "selected": false,
-            "text": ".rhi31",
-            "value": ".rhi31"
-          },
           {
             "selected": false,
             "text": "ae0",
@@ -933,7 +613,7 @@
             "value": "ae43"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "et-0/0/0",
             "value": "et-0/0/0"
           },
@@ -948,7 +628,7 @@
             "value": "et-0/0/2"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "et-0/0/3",
             "value": "et-0/0/3"
           },
@@ -1278,7 +958,7 @@
             "value": "pfh-0/0/0"
           }
         ],
-        "query": "SHOW TAG VALUES FROM \"/junos/system/linecard/interface/queue\" WITH KEY = \"/interfaces/interface/@name\" where device = '10.161.35.118'",
+        "query": "SHOW TAG VALUES FROM \"/junos/system/linecard/interface/queue\" WITH KEY = \"/interfaces/interface/@name\" where device = '10.161.35.118' and \"/interfaces/interface/@name\" =~ /^\\w/",
         "refresh": 0,
         "regex": "",
         "skipUrlSync": false,
@@ -1292,12 +972,12 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "/junos/system/linecard/interface/queue",
   "uid": "F4NjYLrGz",
-  "version": 2
+  "version": 3
 }

@@ -102,3 +102,10 @@ select *
 from "/components" 
 where "/components/component/properties/property/@name" = 'wavelength' limit 10
 EOM
+
+echo -e "\n===== fan ====="
+$INFLUX <<EOM
+select *
+from "/components" 
+where "/components/component/@name" =~ /^Fan/ limit 4
+EOM

@@ -1,0 +1,315 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 9,
+  "iteration": 1620004810637,
+  "links": [],
+  "panels": [
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 2,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$col",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "/network-instances/network-instance/protocols/protocol/isis",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "select \n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/$isis_type/state/dropped\")) as \"dropped\", \n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/$isis_type/state/processed\")) as \"processed\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/$isis_type/state/received\")) as \"received\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/$isis_type/state/retransmit\")) as \"retransmit\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/$isis_type/state/sent\")) as \"sent\"\nfrom \"/network-instances/network-instance/protocols/protocol/isis\"\nwhere \"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/@interface-id\" = '$interface_isis' and $timeFilter \nGROUP BY time($__interval) fill(none)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "$device_isis $interface_isis /packet-counters/$isis_type/state",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 27,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "10.161.35.118",
+          "value": "10.161.35.118"
+        },
+        "datasource": null,
+        "definition": "SHOW TAG VALUES FROM \"/network-instances/network-instance/protocols/protocol/isis\" WITH KEY = \"device\"",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Device",
+        "multi": false,
+        "name": "device_isis",
+        "options": [
+          {
+            "selected": true,
+            "text": "10.161.35.118",
+            "value": "10.161.35.118"
+          }
+        ],
+        "query": "SHOW TAG VALUES FROM \"/network-instances/network-instance/protocols/protocol/isis\" WITH KEY = \"device\"",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "ae34.0",
+          "value": "ae34.0"
+        },
+        "datasource": null,
+        "definition": "SHOW TAG VALUES FROM \"/network-instances/network-instance/protocols/protocol/isis\" WITH KEY = \"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/@interface-id\"",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Interface",
+        "multi": false,
+        "name": "interface_isis",
+        "options": [
+          {
+            "selected": true,
+            "text": "ae34.0",
+            "value": "ae34.0"
+          },
+          {
+            "selected": false,
+            "text": "ae40.0",
+            "value": "ae40.0"
+          },
+          {
+            "selected": false,
+            "text": "ae41.0",
+            "value": "ae41.0"
+          },
+          {
+            "selected": false,
+            "text": "ae42.0",
+            "value": "ae42.0"
+          },
+          {
+            "selected": false,
+            "text": "ae43.0",
+            "value": "ae43.0"
+          },
+          {
+            "selected": false,
+            "text": "lo0.0",
+            "value": "lo0.0"
+          }
+        ],
+        "query": "SHOW TAG VALUES FROM \"/network-instances/network-instance/protocols/protocol/isis\" WITH KEY = \"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/@interface-id\"",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "iih",
+          "value": "iih"
+        },
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Type",
+        "multi": false,
+        "name": "isis_type",
+        "options": [
+          {
+            "selected": false,
+            "text": "csnp",
+            "value": "csnp"
+          },
+          {
+            "selected": false,
+            "text": "esh",
+            "value": "esh"
+          },
+          {
+            "selected": true,
+            "text": "iih",
+            "value": "iih"
+          },
+          {
+            "selected": false,
+            "text": "ish",
+            "value": "ish"
+          },
+          {
+            "selected": false,
+            "text": "lsp",
+            "value": "lsp"
+          },
+          {
+            "selected": false,
+            "text": "psnp",
+            "value": "psnp"
+          },
+          {
+            "selected": false,
+            "text": "unknown",
+            "value": "unknown"
+          }
+        ],
+        "query": "csnp,esh,iih,ish,lsp,psnp,unknown",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-3h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "/network-instances/network-instance/protocols/protocol/isis",
+  "uid": "j0BSYlrGz",
+  "version": 1
+}

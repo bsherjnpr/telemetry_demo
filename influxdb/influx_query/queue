@@ -30,14 +30,19 @@ $INFLUX <<EOM
 SHOW FIELD KEYS from "$MEASUREMENT";
 EOM
 
-echo -e "\n===== interfaces ====="
-$INFLUX <<EOM
---SHOW TAG VALUES FROM "/junos/system/linecard/interface/queue" WITH KEY = "/interfaces/interface/@name"
-SELECT "/interfaces/interface/state/counters/out-queue/@queue-number", "/interfaces/interface/state/counters/out-queue/bytes"
-FROM "/junos/system/linecard/interface/queue"
-WHERE "device"='10.161.35.118' and "/interfaces/interface/@name"='et-0/0/1' 
-GROUP BY "/interfaces/interface/state/counters/out-queue/@queue-number"
-EOM
+#echo -e "\n===== interfaces ====="
+#$INFLUX <<EOM
+#--SHOW TAG VALUES FROM "/junos/system/linecard/interface/queue" WITH KEY = "/interfaces/interface/@name"
+#SELECT "/interfaces/interface/state/counters/out-queue/@queue-number", "/interfaces/interface/state/counters/out-queue/bytes"
+#FROM "/junos/system/linecard/interface/queue"
+#WHERE "device"='10.161.35.118' and "/interfaces/interface/@name"='et-0/0/1' 
+#GROUP BY "/interfaces/interface/state/counters/out-queue/@queue-number"
+#EOM
 
+
+echo -e "\n===== Field keys from Measurements ====="
+$INFLUX <<EOM
+SHOW TAG VALUES FROM "/junos/system/linecard/interface/queue" WITH KEY = "/interfaces/interface/@name" where device = '10.161.35.118' and "/interfaces/interface/@name" =~ /^\w/;
+EOM
 
 
