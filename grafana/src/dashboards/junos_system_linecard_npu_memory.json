@@ -16,9 +16,138 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1619566403919,
+  "iteration": 1620143474206,
   "links": [],
   "panels": [
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 13,
+        "w": 20,
+        "x": 0,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 3,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "[[tag_/components/component/properties/property/@name]]",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "select  mean(\"/components/component/properties/property/state/value\") \nfrom \"/junos/system/linecard/npu/memory\" \nwhere device = '$device_npu_memory' and  \"/components/component/@name\" = '$fpc_npu' and  \"/components/component/properties/property/@name\" =~ /utilization$/ and $timeFilter \ngroup by  time($__interval), \"/components/component/properties/property/@name\"   fill(none)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "/junos/system/linecard/npu/memory/utilization $device_npu_memory $fpc_npu",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:64",
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:65",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
     {
       "aliasColors": {},
       "bars": false,
@@ -35,7 +164,7 @@
         "h": 13,
         "w": 20,
         "x": 0,
-        "y": 0
+        "y": 13
       },
       "hiddenSeries": false,
       "id": 2,
@@ -190,8 +319,8 @@
         "allValue": null,
         "current": {
           "selected": true,
-          "text": "FPC0:NPU22",
-          "value": "FPC0:NPU22"
+          "text": "FPC0:NPU16",
+          "value": "FPC0:NPU16"
         },
         "datasource": null,
         "definition": "SHOW TAG VALUES FROM \"/junos/system/linecard/npu/memory\" WITH KEY = \"/components/component/@name\"",
@@ -204,7 +333,7 @@
         "name": "fpc_npu",
         "options": [
           {
-            "selected": false,
+            "selected": true,
             "text": "FPC0:NPU16",
             "value": "FPC0:NPU16"
           },
@@ -234,7 +363,7 @@
             "value": "FPC0:NPU21"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "FPC0:NPU22",
             "value": "FPC0:NPU22"
           },
@@ -298,12 +427,12 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "/junos/system/linecard/npu/memory",
   "uid": "0VvuxtrGk",
-  "version": 2
+  "version": 1
 }

@@ -26,7 +26,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1620006377996,
+  "iteration": 1620141828325,
   "links": [],
   "panels": [
     {
@@ -93,7 +93,7 @@
           "measurement": "/network-instances/network-instance/protocols/protocol/isis",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "select \n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/$isis_type/state/dropped\")) as \"dropped\", \n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/$isis_type/state/processed\")) as \"processed\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/$isis_type/state/received\")) as \"received\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/$isis_type/state/retransmit\")) as \"retransmit\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/$isis_type/state/sent\")) as \"sent\"\nfrom \"/network-instances/network-instance/protocols/protocol/isis\"\nwhere \"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/@interface-id\" = '$interface_isis' and $timeFilter \nGROUP BY time($__interval) fill(none)",
+          "query": "select \n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/csnp/state/dropped\")) as \"dropped\", \n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/csnp/state/processed\")) as \"processed\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/csnp/state/received\")) as \"received\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/csnp/state/retransmit\")) as \"retransmit\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/csnp/state/sent\")) as \"sent\"\nfrom \"/network-instances/network-instance/protocols/protocol/isis\"\nwhere \"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/@interface-id\" = '$interface_isis' and $timeFilter \nGROUP BY time($__interval) fill(none)",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -118,7 +118,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "$device_isis $interface_isis /packet-counters/$isis_type/state",
+      "title": "$device_isis $interface_isis /packet-counters/csnp/state",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -134,6 +134,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:83",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -142,6 +143,775 @@
           "show": true
         },
         {
+          "$$hashKey": "object:84",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 6,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$col",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "/network-instances/network-instance/protocols/protocol/isis",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "select \n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/esh/state/dropped\")) as \"dropped\", \n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/esh/state/processed\")) as \"processed\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/esh/state/received\")) as \"received\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/esh/state/retransmit\")) as \"retransmit\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/esh/state/sent\")) as \"sent\"\nfrom \"/network-instances/network-instance/protocols/protocol/isis\"\nwhere \"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/@interface-id\" = '$interface_isis' and $timeFilter \nGROUP BY time($__interval) fill(none)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "$device_isis $interface_isis /packet-counters/esh/state",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:167",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:168",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "hiddenSeries": false,
+      "id": 5,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$col",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "/network-instances/network-instance/protocols/protocol/isis",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "select \n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/iih/state/dropped\")) as \"dropped\", \n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/iih/state/processed\")) as \"processed\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/iih/state/received\")) as \"received\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/iih/state/retransmit\")) as \"retransmit\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/iih/state/sent\")) as \"sent\"\nfrom \"/network-instances/network-instance/protocols/protocol/isis\"\nwhere \"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/@interface-id\" = '$interface_isis' and $timeFilter \nGROUP BY time($__interval) fill(none)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "$device_isis $interface_isis /packet-counters/iih/state",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:251",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:252",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 9
+      },
+      "hiddenSeries": false,
+      "id": 7,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$col",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "/network-instances/network-instance/protocols/protocol/isis",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "select \n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/ish/state/dropped\")) as \"dropped\", \n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/ish/state/processed\")) as \"processed\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/ish/state/received\")) as \"received\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/ish/state/retransmit\")) as \"retransmit\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/ish/state/sent\")) as \"sent\"\nfrom \"/network-instances/network-instance/protocols/protocol/isis\"\nwhere \"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/@interface-id\" = '$interface_isis' and $timeFilter \nGROUP BY time($__interval) fill(none)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "$device_isis $interface_isis /packet-counters/ish/state",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:335",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:336",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 18
+      },
+      "hiddenSeries": false,
+      "id": 4,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$col",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "/network-instances/network-instance/protocols/protocol/isis",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "select \n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/lsp/state/dropped\")) as \"dropped\", \n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/lsp/state/processed\")) as \"processed\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/lsp/state/received\")) as \"received\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/lsp/state/retransmit\")) as \"retransmit\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/lsp/state/sent\")) as \"sent\"\nfrom \"/network-instances/network-instance/protocols/protocol/isis\"\nwhere \"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/@interface-id\" = '$interface_isis' and $timeFilter \nGROUP BY time($__interval) fill(none)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "$device_isis $interface_isis /packet-counters/lsp/state",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:419",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:420",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 18
+      },
+      "hiddenSeries": false,
+      "id": 3,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$col",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "/network-instances/network-instance/protocols/protocol/isis",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "select \n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/psnp/state/dropped\")) as \"dropped\", \n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/psnp/state/processed\")) as \"processed\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/psnp/state/received\")) as \"received\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/psnp/state/retransmit\")) as \"retransmit\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/psnp/state/sent\")) as \"sent\"\nfrom \"/network-instances/network-instance/protocols/protocol/isis\"\nwhere \"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/@interface-id\" = '$interface_isis' and $timeFilter \nGROUP BY time($__interval) fill(none)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "$device_isis $interface_isis /packet-counters/psnp/state",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:503",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:504",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 27
+      },
+      "hiddenSeries": false,
+      "id": 8,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$col",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "/network-instances/network-instance/protocols/protocol/isis",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "select \n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/unknown/state/dropped\")) as \"dropped\", \n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/unknown/state/processed\")) as \"processed\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/unknown/state/received\")) as \"received\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/unknown/state/retransmit\")) as \"retransmit\",\n    non_negative_derivative(mean(\"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/packet-counters/unknown/state/sent\")) as \"sent\"\nfrom \"/network-instances/network-instance/protocols/protocol/isis\"\nwhere \"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/@interface-id\" = '$interface_isis' and $timeFilter \nGROUP BY time($__interval) fill(none)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "$device_isis $interface_isis /packet-counters/unknown/state",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:419",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:420",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -200,8 +970,8 @@
         "allValue": null,
         "current": {
           "selected": true,
-          "text": "ae34.0",
-          "value": "ae34.0"
+          "text": "ae42.0",
+          "value": "ae42.0"
         },
         "datasource": null,
         "definition": "SHOW TAG VALUES FROM \"/network-instances/network-instance/protocols/protocol/isis\" WITH KEY = \"/network-instances/network-instance/protocols/protocol/isis/interfaces/interface/@interface-id\"",
@@ -214,7 +984,7 @@
         "name": "interface_isis",
         "options": [
           {
-            "selected": true,
+            "selected": false,
             "text": "ae34.0",
             "value": "ae34.0"
           },
@@ -229,7 +999,7 @@
             "value": "ae41.0"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "ae42.0",
             "value": "ae42.0"
           },
@@ -254,62 +1024,6 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {
-          "selected": true,
-          "text": "iih",
-          "value": "iih"
-        },
-        "description": null,
-        "error": null,
-        "hide": 0,
-        "includeAll": false,
-        "label": "Type",
-        "multi": false,
-        "name": "isis_type",
-        "options": [
-          {
-            "selected": false,
-            "text": "csnp",
-            "value": "csnp"
-          },
-          {
-            "selected": false,
-            "text": "esh",
-            "value": "esh"
-          },
-          {
-            "selected": true,
-            "text": "iih",
-            "value": "iih"
-          },
-          {
-            "selected": false,
-            "text": "ish",
-            "value": "ish"
-          },
-          {
-            "selected": false,
-            "text": "lsp",
-            "value": "lsp"
-          },
-          {
-            "selected": false,
-            "text": "psnp",
-            "value": "psnp"
-          },
-          {
-            "selected": false,
-            "text": "unknown",
-            "value": "unknown"
-          }
-        ],
-        "query": "csnp,esh,iih,ish,lsp,psnp,unknown",
-        "queryValue": "",
-        "skipUrlSync": false,
-        "type": "custom"
       }
     ]
   },
@@ -321,5 +1035,5 @@
   "timezone": "",
   "title": "/network-instances/network-instance/protocols/protocol/isis",
   "uid": "j0BSYlrGz",
-  "version": 2
+  "version": 1
 }
