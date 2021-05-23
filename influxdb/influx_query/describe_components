@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# https://docs.influxdata.com/influxdb/v1.8/query_language/explore-schema/
+
+#set -x
+
+INFLUX="docker exec -i influxdb influx --database telegraf -precision rfc3339"
+MEASUREMENT="/components"
+
+
+echo -e "\n===== Measurements ====="
+$INFLUX <<EOM
+SHOW MEASUREMENTS;
+EOM
+
+echo -e "\n===== TAG keys from Measurements ====="
+$INFLUX <<EOM
+SHOW TAG KEYS from "$MEASUREMENT";
+EOM
+
+echo -e "\n===== tag values from measurements ====="
+$INFLUX <<EOM
+SHOW TAG VALUES FROM "$MEASUREMENT" with KEY = "/components/component/properties/property/@name";
+--SHOW TAG VALUES FROM "$MEASUREMENT" with KEY = "/components/component/transceiver/physical-channels/channel/@index";
+EOM
+
+echo -e "\n===== Field keys from Measurements ====="
+$INFLUX <<EOM
+SHOW FIELD KEYS from "$MEASUREMENT";
+EOM
+
+echo -e "\n===== Field keys from Measurements ====="
+$INFLUX <<EOM
+--select * from "$MEASUREMENT" where "/components/component/properties/property/@name" = 'CPU Temperature';
+ select "/components/component/@name","/components/component/properties/property/state/value" from "$MEASUREMENT" where "/components/component/properties/property/@name" = 'CPU Temperature';
+
+--select * from "$MEASUREMENT" where "/components/component/properties/property/@name" = 'Temperature' limit 2;
+select "/components/component/@name","/components/component/properties/property/state/value" from "$MEASUREMENT" where "/components/component/properties/property/@name" = 'Temperature';
+EOM
+
+
+
+

@@ -1,10 +1,14 @@
 #!/bin/bash
 
+set -x
+
+source ../params
+
 #--net=container:influxdb \
 #--volume "$PWD/configs:/var/lib/grafana" \
 docker run -d --rm --name=grafana \
         --net=container:influxdb \
 	--volume "$PWD/provisioning:/etc/grafana/provisioning" \
 	--volume "$PWD/src:/src" \
-	grafana/grafana
+	$GRAFANA_CONTAINER
 

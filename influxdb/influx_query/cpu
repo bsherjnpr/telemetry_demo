@@ -1,0 +1,111 @@
+#!/bin/bash
+
+# https://docs.influxdata.com/influxdb/v1.8/query_language/explore-schema/
+
+#set -x
+
+INFLUX="docker exec -i influxdb influx --database telegraf -precision rfc3339"
+MEASUREMENT="/components"
+
+
+echo -e "\n===== Measurements ====="
+$INFLUX <<EOM
+SHOW MEASUREMENTS;
+EOM
+
+echo -e "\n===== TAG keys from Measurements ====="
+$INFLUX <<EOM
+SHOW TAG KEYS from "$MEASUREMENT";
+EOM
+
+echo -e "\n===== tag values from measurements ====="
+$INFLUX <<EOM
+SHOW TAG VALUES FROM "$MEASUREMENT" with KEY = "/components/component/@name";
+SHOW TAG VALUES FROM "$MEASUREMENT" with KEY = "/components/component/properties/property/@name";
+SHOW TAG VALUES FROM "$MEASUREMENT" with KEY = "/components/component/transceiver/physical-channels/channel/@index";
+EOM
+
+echo -e "\n===== Field keys from Measurements ====="
+$INFLUX <<EOM
+SHOW FIELD KEYS from "$MEASUREMENT";
+EOM
+
+#  "prefix": "components/component[name=Routing Engine0]/properties/property[name=CPU Temperature]",
+#  "prefix": "components/component[name=Routing Engine0]/properties/property[name=cpu-utilization-kernel]",
+#  "prefix": "components/component[name=Routing Engine0]/properties/property[name=cpu-utilization-interrupt]",
+#  "prefix": "components/component[name=Routing Engine0]/properties/property[name=cpu-utilization-background]",
+#  "prefix": "components/component[name=Routing Engine0]/properties/property[name=cpu-utilization-idle]",
+#  "prefix": "components/component[name=Routing Engine0]/properties/property[name=cpu-utilization-total]",
+#  "prefix": "components/component[name=Routing Engine0]/properties/property[name=cpu-utilization-user]",
+#  "prefix": "components/component[name=Routing Engine0]/properties/property[name=temperature-cpu]",
+#  "prefix": "components/component/properties/property[name=CPU Temperature]",
+#  "prefix": "components/component/properties/property[name=cpu-utilization-background]",
+#  "prefix": "components/component/properties/property[name=cpu-utilization-idle]",
+#  "prefix": "components/component/properties/property[name=cpu-utilization-total]",
+#  "prefix": "components/component/properties/property[name=cpu-utilization-kernel]",
+#  "prefix": "components/component/properties/property[name=cpu-utilization-user]",
+#  "prefix": "components/component/properties/property[name=cpu-utilization-interrupt]",
+
+
+#echo -e "\n===== CPU from Measurements ====="
+#$INFLUX <<EOM
+#select "/components/component/@name","/components/component/properties/property/state/value" from "$MEASUREMENT" where "/components/component/properties/property/@name" = 'cpu-utilization-total';
+#EOM
+
+#echo -e "\n===== CPU from Measurements ====="
+#$INFLUX <<EOM
+#select mean("/components/component/properties/property/state/value_f") as "value" 
+#from "/components" 
+#where "/components/component/properties/property/@name" =~ /^cpu-utilization/ 
+#GROUP BY "/components/component/properties/property/@name"
+#EOM
+
+#/components/component/properties/property/@name                    temperature
+#/components/component/properties/property/@name                    temperature-ambient
+#/components/component/properties/property/@name                    temperature-cpu
+#/components/component/properties/property/@name                    temperature-status
+
+#echo -e "\n===== temperature ====="
+#$INFLUX <<EOM
+#select "/components/component/properties/property/state/value_f" as "value" 
+#from "/components" 
+#where "/components/component/properties/property/@name" =~ /^temperature/ 
+#GROUP BY "/components/component/properties/property/@name"
+#EOM
+
+#echo -e "\n===== temperature ====="
+#$INFLUX <<EOM
+#select "/components/component/properties/property/state/value_f" as "value" 
+#from "/components" 
+#where "/components/component/properties/property/@name" =~ /^Ambient/ 
+#GROUP BY "/components/component/properties/property/@name"
+#EOM
+
+#echo -e "\n===== power ====="
+#$INFLUX <<EOM
+#select "/components/component/properties/property/state/value_f" as "value" 
+#from "/components" 
+#where "/components/component/properties/property/@name" =~ /^power/ 
+#GROUP BY "/components/component/properties/property/@name"
+#EOM
+
+echo -e "\n===== wavelength ====="
+$INFLUX <<EOM
+select "/components/component/@name", "/components/component/properties/property/state/value"
+from "/components" 
+where "/components/component/properties/property/@name" = 'wavelength' limit 10
+EOM
+
+echo -e "\n===== wavelength ====="
+$INFLUX <<EOM
+select *
+from "/components" 
+where "/components/component/properties/property/@name" = 'wavelength' limit 10
+EOM
+
+echo -e "\n===== fan ====="
+$INFLUX <<EOM
+select *
+from "/components" 
+where "/components/component/@name" =~ /^Fan/ limit 4
+EOM

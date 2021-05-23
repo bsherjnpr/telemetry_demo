@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# https://docs.influxdata.com/influxdb/v1.8/query_language/explore-schema/
+
+docker exec -i influxdb influx --database "telegraf" -precision "rfc3339" <<EOM
+-- SHOW RETENTION POLICIES;
+
+-- SHOW MEASUREMENTS;
+
+-- SHOW TAG KEYS from "/junos/system/linecard/npu/utilization";
+
+-- SHOW TAG VALUES FROM "/junos/system/linecard/npu/utilization" ;
+-- SHOW TAG VALUES FROM "/junos/system/linecard/npu/utilization" WITH KEY = "device";
+SHOW TAG VALUES FROM "/junos/system/linecard/npu/utilization" WITH KEY = "/components/component/properties/property/@name";
+
+-- SHOW TAG VALUES FROM "/junos/system/linecard/npu/utilization" WITH KEY = "/components/component/@name";
+
+-- SHOW FIELD KEYS FROM "/junos/system/linecard/npu/utilization";
+
+-- select "/components/component/@name", "/components/component/properties/property/@name", "/components/component/properties/property/state/value" from "/junos/system/linecard/npu/utilization" limit 20;
+
+-- select "/components/component/@name", "/components/component/properties/property/state/value" from "/junos/system/linecard/npu/utilization" where "/components/component/properties/property/@name" =~ /^util-asic-to-host-pps-rate/ limit 20;
+
+-- select  "/components/component/properties/property/state/value" from "/junos/system/linecard/npu/utilization" where "/components/component/properties/property/@name" =~ /^util-asic-to-host-pps-rate/ group by "/components/component/@name" limit 20;
+
+show tag values from "/junos/system/linecard/npu/utilization" with key = "/components/component/@name" where "/components/component/@name" =~ /^FPC0:/;
+
+--select "/components/component/@name" from "/junos/system/linecard/npu/utilization" where "/components/component/@name" =~ /^FPC0:/;
+
+EOM

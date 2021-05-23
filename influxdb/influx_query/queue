@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# https://docs.influxdata.com/influxdb/v1.8/query_language/explore-schema/
+
+#set -x
+
+INFLUX="docker exec -i influxdb influx --database telegraf -precision rfc3339"
+MEASUREMENT="/junos/system/linecard/interface/queue"
+
+
+echo -e "\n===== Measurements ====="
+$INFLUX <<EOM
+SHOW MEASUREMENTS;
+EOM
+
+echo -e "\n===== TAG keys from Measurements ====="
+$INFLUX <<EOM
+SHOW TAG KEYS from "$MEASUREMENT";
+EOM
+
+echo -e "\n===== tag values from measurements ====="
+$INFLUX <<EOM
+SHOW TAG VALUES FROM "$MEASUREMENT" with KEY = "/components/component/@name";
+SHOW TAG VALUES FROM "$MEASUREMENT" with KEY = "/components/component/properties/property/@name";
+SHOW TAG VALUES FROM "$MEASUREMENT" with KEY = "/components/component/transceiver/physical-channels/channel/@index";
+EOM
+
+echo -e "\n===== Field keys from Measurements ====="
+$INFLUX <<EOM
+SHOW FIELD KEYS from "$MEASUREMENT";
+EOM
+
+#echo -e "\n===== interfaces ====="
+#$INFLUX <<EOM
+#--SHOW TAG VALUES FROM "/junos/system/linecard/interface/queue" WITH KEY = "/interfaces/interface/@name"
+#SELECT "/interfaces/interface/state/counters/out-queue/@queue-number", "/interfaces/interface/state/counters/out-queue/bytes"
+#FROM "/junos/system/linecard/interface/queue"
+#WHERE "device"='10.161.35.118' and "/interfaces/interface/@name"='et-0/0/1' 
+#GROUP BY "/interfaces/interface/state/counters/out-queue/@queue-number"
+#EOM
+
+
+echo -e "\n===== Field keys from Measurements ====="
+$INFLUX <<EOM
+SHOW TAG VALUES FROM "/junos/system/linecard/interface/queue" WITH KEY = "/interfaces/interface/@name" where device = '10.161.35.118' and "/interfaces/interface/@name" =~ /^\w/;
+EOM
+
+

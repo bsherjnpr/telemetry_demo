@@ -9,14 +9,25 @@
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
         "type": "dashboard"
+      },
+      {
+        "datasource": "influxdb",
+        "enable": true,
+        "hide": false,
+        "iconColor": "rgba(255, 96, 96, 1)",
+        "name": "commit",
+        "query": "select device,\"/junos/events/event/message\" from \"/junos/events\" where \"/junos/events/event/@id\" = 'UI_COMMIT_COMPLETED'",
+        "showIn": 0,
+        "tagsColumn": "/junos/events/event/message",
+        "textColumn": "message"
       }
     ]
   },
-  "description": "Interfaces/interface",
+  "description": "/interfaces/interface",
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1619444615430,
+  "iteration": 1620049451171,
   "links": [],
   "panels": [
     {
@@ -28,7 +39,6 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "unit": "bps"
         },
         "overrides": []
@@ -60,7 +70,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.5.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -113,7 +123,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "$device $interface in-octets (bps)",
+      "title": "$device $interface in-octets (bits/s)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -161,7 +171,6 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "unit": "bps"
         },
         "overrides": []
@@ -193,7 +202,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.5.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -252,7 +261,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "$device $interface out-octets (bps)",
+      "title": "$device $interface out-octets (bits/s)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -300,8 +309,7 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "unit": "pps"
+          "unit": "Bps"
         },
         "overrides": []
       },
@@ -312,6 +320,276 @@
         "w": 12,
         "x": 0,
         "y": 7
+      },
+      "hiddenSeries": false,
+      "id": 16,
+      "interval": "1m",
+      "legend": {
+        "avg": true,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT non_negative_derivative(mean(\"/interfaces/interface/state/counters/in-octets\"),1s)   AS \"in-octets\" FROM \"interfaces\" WHERE \"device\"='$device' and \"/interfaces/interface/@name\"='$interface' and $timeFilter  GROUP BY time($__interval) FILL(none)",
+          "rawQuery": true,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "$device $interface in-octets (octets/s)",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:492",
+          "format": "Bps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:493",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "Bps"
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 7
+      },
+      "hiddenSeries": false,
+      "id": 17,
+      "interval": "1m",
+      "legend": {
+        "avg": true,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "interfaces",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT non_negative_derivative(mean(\"/interfaces/interface/state/counters/out-octets\"),1s)   AS \"out-octets\" FROM \"interfaces\" WHERE \"device\"='$device' and \"/interfaces/interface/@name\"='$interface' and $timeFilter  GROUP BY time($__interval) FILL(none)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "/interfaces/interface[if_name='et-0/0/51']/state/counters/if_in_octets"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "$device $interface out-octets (octets/s)",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:698",
+          "format": "Bps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:699",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "pps"
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 14
       },
       "hiddenSeries": false,
       "id": 6,
@@ -332,7 +610,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.5.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -439,7 +717,6 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "unit": "pps"
         },
         "overrides": []
@@ -450,7 +727,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 7
+        "y": 14
       },
       "hiddenSeries": false,
       "id": 8,
@@ -471,7 +748,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.5.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -578,7 +855,6 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "unit": "pps"
         },
         "overrides": []
@@ -589,7 +865,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 14
+        "y": 21
       },
       "hiddenSeries": false,
       "id": 10,
@@ -610,7 +886,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.5.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -710,7 +986,6 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "unit": "pps"
         },
         "overrides": []
@@ -721,7 +996,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 14
+        "y": 21
       },
       "hiddenSeries": false,
       "id": 9,
@@ -742,7 +1017,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.5.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -840,9 +1115,7 @@
       "dashes": false,
       "datasource": null,
       "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
+        "defaults": {},
         "overrides": []
       },
       "fill": 1,
@@ -851,7 +1124,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 21
+        "y": 28
       },
       "hiddenSeries": false,
       "id": 13,
@@ -871,7 +1144,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.5.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -968,9 +1241,7 @@
       "dashes": false,
       "datasource": null,
       "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
+        "defaults": {},
         "overrides": []
       },
       "fill": 1,
@@ -979,7 +1250,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 21
+        "y": 28
       },
       "hiddenSeries": false,
       "id": 12,
@@ -999,7 +1270,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.5.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1098,8 +1369,7 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "unit": "bps"
+          "unit": "Bps"
         },
         "overrides": []
       },
@@ -1109,7 +1379,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 29
+        "y": 36
       },
       "hiddenSeries": false,
       "id": 14,
@@ -1130,7 +1400,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.5.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1200,7 +1470,7 @@
       "yaxes": [
         {
           "$$hashKey": "object:492",
-          "format": "bps",
+          "format": "Bps",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1231,7 +1501,6 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "unit": "pps"
         },
         "overrides": []
@@ -1242,7 +1511,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 29
+        "y": 36
       },
       "hiddenSeries": false,
       "id": 15,
@@ -1263,7 +1532,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "7.5.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1372,8 +1641,8 @@
         "allValue": null,
         "current": {
           "selected": false,
-          "text": "10.48.188.9",
-          "value": "10.48.188.9"
+          "text": "10.161.35.118",
+          "value": "10.161.35.118"
         },
         "datasource": null,
         "definition": "SHOW TAG VALUES FROM \"interfaces\" WITH KEY = \"device\"",
@@ -1400,8 +1669,8 @@
         "allValue": null,
         "current": {
           "selected": true,
-          "text": "et-0/0/10",
-          "value": "et-0/0/10"
+          "text": "et-0/0/2",
+          "value": "et-0/0/2"
         },
         "datasource": null,
         "definition": "SHOW TAG VALUES FROM \"interfaces\" WITH KEY = \"/interfaces/interface/@name\" where device = '$device'",
@@ -1434,7 +1703,7 @@
             "value": "et-0/0/1"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "et-0/0/10",
             "value": "et-0/0/10"
           },
@@ -1484,7 +1753,7 @@
             "value": "et-0/0/19"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "et-0/0/2",
             "value": "et-0/0/2"
           },
@@ -1738,12 +2007,12 @@
     ]
   },
   "time": {
-    "from": "2021-04-22T14:41:00.000Z",
-    "to": "2021-04-22T15:27:00.000Z"
+    "from": "now-3h",
+    "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Interfaces/interface",
+  "title": "/interfaces/interface",
   "uid": "xq8xKfuGA",
-  "version": 1
+  "version": 8
 }
