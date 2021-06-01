@@ -7,7 +7,7 @@ source ../params
 #--net=container:influxdb \
 #--volume "$PWD/configs:/var/lib/grafana" \
 docker run -d --rm --name=grafana \
-        --net=container:influxdb \
+        --net=container:influxdb2 \
 	--volume "$PWD/provisioning:/etc/grafana/provisioning" \
 	--volume "$PWD/src:/src" \
 	$GRAFANA_CONTAINER

@@ -1,0 +1,39 @@
+insecure: true
+encoding: proto
+log: true
+
+targets:
+  10.48.188.20:50051:
+    username: regress
+    password: MaRtInI
+    subscriptions:
+      - interface_stats
+    outputs:
+      - influxdb-output
+
+  10.48.188.2:50051:
+    username: regress
+    password: MaRtInI
+    subscriptions:
+      - interface_stats
+
+subscriptions:
+  interface_stats:
+    paths:
+      - /interfaces/interface
+    stream-mode: sample
+    sample-interval: 60s
+
+outputs:
+  influxdb-output:
+    type: influxdb
+    url: http://influxdb2:8086
+    bucket: bucket1 # db name
+    org: netmon 
+    token: CyZqGx3fvn2i1bQMe1E3aiQ6XcTEJOMtGBlKXIzVfB9OexWPg68VFP2I7kzkUHoOa6tkaxnO1_2AaJNvn-e77g==
+    batch-size: 1000
+    flush-timer: 10s
+  output1:
+    type: file # output type
+    file-type: stdout # or stderr
+    format: json

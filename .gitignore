@@ -1,1 +1,3 @@
 influxdb/data/*
+gnmic.token.txt
+grafana.token.txt

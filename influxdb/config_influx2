@@ -1,0 +1,54 @@
+#!/bin/bash
+
+#Load variables
+source ../params
+
+docker exec influxdb2 influx setup -f \
+      --username $INFLUX_USERNAME \
+      --password $INFLUX_PASSWORD \
+      --org $INFLUX_ORGANIZATION \
+      --bucket $INFLUX_BUCKET \
+      --retention $INFLUX_RETENTION
+
+
+docker exec influxdb2 influx auth create -o $INFLUX_ORGANIZATION \
+  --description grafana \
+  --read-buckets \
+  --read-checks \
+  --read-dashboards \
+  --read-dbrps \
+  --read-notificationEndpoints \
+  --read-notificationRules \
+  --read-orgs \
+  --read-tasks \
+  --read-telegrafs \
+  --read-user \
+  --json | jq '.["token"]' | tee ../grafana.token.txt
+
+
+docker exec influxdb2 influx auth create -o $INFLUX_ORGANIZATION \
+  --description gnmic \
+  --read-buckets \
+  --read-checks \
+  --read-dashboards \
+  --read-dbrps \
+  --read-notificationEndpoints \
+  --read-notificationRules \
+  --read-orgs \
+  --read-tasks \
+  --read-telegrafs \
+  --read-user \
+  --write-buckets \
+  --write-checks \
+  --write-dashboards \
+  --write-dbrps \
+  --write-notificationEndpoints \
+  --write-notificationRules \
+  --write-orgs \
+  --write-tasks \
+  --write-telegrafs \
+  --write-user \
+  --json | jq '.["token"]' | tee ../gnmic.token.txt
+
+
+

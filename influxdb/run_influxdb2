@@ -1,8 +1,23 @@
 #!/bin/bash
 
+source ../params
+
+set -x
+
+docker network create $DOCKER_NETWORK
+
 # admin / admin1234
 # org = jnpr bucket = bucket1
 
-docker run -d --rm --name influxdb -p 8086:8086 -v $PWD:/var/lib/influxdb2 influxdb:2.0
+docker run -d --rm --name influxdb2 \
+       --net=$DOCKER_NETWORK \
+       -p $INFLUX_PORT:8086 \
+       -p $GRAFANA_PORT:3000 \
+       -v $PWD/data:/var/lib/influxdb2 \
+       -v $PWD/config:/etc/influxdb2 \
+       $INFLUX_CONTAINER
+
 
 # docker container stop influxdb
+
+

@@ -1,0 +1,54 @@
+#!/bin/bash
+
+source ../params
+
+set -x
+
+
+files=(config/gnmic*)
+echo ${files[1]}
+echo ${#files[@]}
+
+for i in "${files[@]}"
+do
+  basename $i
+done
+
+case "$1" in
+
+"test" )
+    echo "in test"
+    #Second arg should be config file
+    if [ $2 ]
+    then
+	    filename=`basename $2`
+	    echo "filename = $filename"
+    else
+	    echo "need to specify config file"
+	    exit
+    fi
+            docker run --rm --name gnmic \
+                   --net=$DOCKER_NETWORK \
+                   -v $PWD/config/gnmic1.yaml:/app/gnmic.yaml \
+                   $GNMIC_CONTAINER subscribe --log --config /app/gnmic.yaml
+       
+
+    exit
+    ;; 
+* )
+    echo "Default"
+    ;;
+esac 
+
+echo "after case"
+
+
+docker run -d --rm --name gnmic \
+           --net=$DOCKER_NETWORK \
+           -v $PWD/config/gnmic1.yaml:/app/gnmic.yaml \
+           $GNMIC_CONTAINER subscribe --config /app/gnmic.yaml
+       
+
+# docker container stop influxdb
+
+
