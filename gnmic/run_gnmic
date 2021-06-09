@@ -4,6 +4,10 @@ source ../params
 
 set -x
 
+export GNMIC_OUTPUTS_INFLUXDB2_TOKEN=$GNMIC_TOKEN
+
+export GNMIC_TOKEN=`cat ../gnmic.token.txt`
+
 
 files=(config/gnmic*)
 echo ${files[1]}
@@ -28,6 +32,7 @@ case "$1" in
 	    exit
     fi
             docker run --rm --name gnmic \
+		   -e GNMIC_OUTPUTS_INFLUXDB2_TOKEN="$GNMIC_TOKEN" \
                    --net=$DOCKER_NETWORK \
                    -v $PWD/config/gnmic1.yaml:/app/gnmic.yaml \
                    $GNMIC_CONTAINER subscribe --log --config /app/gnmic.yaml
@@ -45,6 +50,7 @@ echo "after case"
 
 docker run -d --rm --name gnmic \
            --net=$DOCKER_NETWORK \
+	   -e GNMIC_OUTPUTS_INFLUXDB2_TOKEN="$GNMIC_TOKEN" \
            -v $PWD/config/gnmic1.yaml:/app/gnmic.yaml \
            $GNMIC_CONTAINER subscribe --config /app/gnmic.yaml
        

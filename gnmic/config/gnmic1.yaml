@@ -9,7 +9,7 @@ targets:
     subscriptions:
       - interface_stats
     outputs:
-      - influxdb-output
+      - influxdb2
 
   10.48.188.2:50051:
     username: regress
@@ -25,12 +25,14 @@ subscriptions:
     sample-interval: 60s
 
 outputs:
-  influxdb-output:
+  influxdb2:
     type: influxdb
     url: http://influxdb2:8086
-    bucket: bucket1 # db name
+    #url: http://127.0.0.1:8086
+    #url: http://127.0.0.1:8186
+    bucket: bucket1
+    #token: BszGM30S49QW6U9_e26B9YSHCXFpGtlnGz-1dFC3fRk7q6F4SZZwdu_y-5-OK7m-HKThpyKNY0PepSWaXCRr5A==
     org: netmon 
-    token: CyZqGx3fvn2i1bQMe1E3aiQ6XcTEJOMtGBlKXIzVfB9OexWPg68VFP2I7kzkUHoOa6tkaxnO1_2AaJNvn-e77g==
     batch-size: 1000
     flush-timer: 10s
   output1:

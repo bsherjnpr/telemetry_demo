@@ -10,6 +10,10 @@ docker exec influxdb2 influx setup -f \
       --bucket $INFLUX_BUCKET \
       --retention $INFLUX_RETENTION
 
+INFLUX_BUCKET_ID=`docker exec influxdb2 influx bucket list --json | jq -r ".[] | select(.name==\"$INFLUX_BUCKET\").id"`
+echo "$INFLUX_BUCKET id = $INFLUX_BUCKET_ID"
+
+
 
 docker exec influxdb2 influx auth create -o $INFLUX_ORGANIZATION \
   --description grafana \
@@ -23,12 +27,12 @@ docker exec influxdb2 influx auth create -o $INFLUX_ORGANIZATION \
   --read-tasks \
   --read-telegrafs \
   --read-user \
-  --json | jq '.["token"]' | tee ../grafana.token.txt
+  --json | jq -r '.["token"]' | tee ../grafana.token.txt
 
 
 docker exec influxdb2 influx auth create -o $INFLUX_ORGANIZATION \
   --description gnmic \
-  --read-buckets \
+  --read-buckets $INFLUX_BUCKET_ID \
   --read-checks \
   --read-dashboards \
   --read-dbrps \
@@ -38,7 +42,7 @@ docker exec influxdb2 influx auth create -o $INFLUX_ORGANIZATION \
   --read-tasks \
   --read-telegrafs \
   --read-user \
-  --write-buckets \
+  --write-buckets $INFLUX_BUCKET_ID \
   --write-checks \
   --write-dashboards \
   --write-dbrps \
@@ -48,7 +52,7 @@ docker exec influxdb2 influx auth create -o $INFLUX_ORGANIZATION \
   --write-tasks \
   --write-telegrafs \
   --write-user \
-  --json | jq '.["token"]' | tee ../gnmic.token.txt
+  --json | jq -r '.["token"]' | tee ../gnmic.token.txt
 
 
 
