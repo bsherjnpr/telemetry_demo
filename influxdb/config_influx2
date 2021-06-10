@@ -3,6 +3,8 @@
 #Load variables
 source ../params
 
+set -x
+
 docker exec influxdb2 influx setup -f \
       --username $INFLUX_USERNAME \
       --password $INFLUX_PASSWORD \
@@ -14,10 +16,12 @@ INFLUX_BUCKET_ID=`docker exec influxdb2 influx bucket list --json | jq -r ".[] |
 echo "$INFLUX_BUCKET id = $INFLUX_BUCKET_ID"
 
 
+# jq -r '.[] | select(.description|test("^admin")).token' token.json
+
 
 docker exec influxdb2 influx auth create -o $INFLUX_ORGANIZATION \
   --description grafana \
-  --read-buckets \
+  --read-bucket $INFLUX_BUCKET_ID \
   --read-checks \
   --read-dashboards \
   --read-dbrps \
@@ -32,27 +36,33 @@ docker exec influxdb2 influx auth create -o $INFLUX_ORGANIZATION \
 
 docker exec influxdb2 influx auth create -o $INFLUX_ORGANIZATION \
   --description gnmic \
-  --read-buckets $INFLUX_BUCKET_ID \
-  --read-checks \
-  --read-dashboards \
-  --read-dbrps \
-  --read-notificationEndpoints \
-  --read-notificationRules \
-  --read-orgs \
-  --read-tasks \
-  --read-telegrafs \
-  --read-user \
-  --write-buckets $INFLUX_BUCKET_ID \
-  --write-checks \
-  --write-dashboards \
-  --write-dbrps \
-  --write-notificationEndpoints \
-  --write-notificationRules \
-  --write-orgs \
-  --write-tasks \
-  --write-telegrafs \
-  --write-user \
+  --read-buckets \
+  --write-buckets \
   --json | jq -r '.["token"]' | tee ../gnmic.token.txt
 
+
+#docker exec influxdb2 influx auth create -o $INFLUX_ORGANIZATION \
+#  --description gnmic \
+#  --read-bucket $INFLUX_BUCKET_ID \
+#  --read-checks \
+#  --read-dashboards \
+#  --read-dbrps \
+#  --read-notificationEndpoints \
+#  --read-notificationRules \
+#  --read-orgs \
+#  --read-tasks \
+#  --read-telegrafs \
+#  --read-user \
+#  --write-bucket $INFLUX_BUCKET_ID \
+#  --write-checks \
+#  --write-dashboards \
+#  --write-dbrps \
+#  --write-notificationEndpoints \
+#  --write-notificationRules \
+#  --write-orgs \
+#  --write-tasks \
+#  --write-telegrafs \
+#  --write-user \
+#  --json | jq -r '.["token"]' | tee ../gnmic.token.txt
 
 

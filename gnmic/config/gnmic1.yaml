@@ -31,7 +31,7 @@ outputs:
     #url: http://127.0.0.1:8086
     #url: http://127.0.0.1:8186
     bucket: bucket1
-    #token: BszGM30S49QW6U9_e26B9YSHCXFpGtlnGz-1dFC3fRk7q6F4SZZwdu_y-5-OK7m-HKThpyKNY0PepSWaXCRr5A==
+    #token: H-qYf7QAAzrN7l3WVw3fhOP1HtdVwunOeBa-MUZb-opFrfLfsg9REltWoyBXdUhN6Tp5LizbOWTxaaqq8LSPPw==
     org: netmon 
     batch-size: 1000
     flush-timer: 10s
