@@ -1,23 +1,7 @@
-# config file version
+
 apiVersion: 1
 
-## list of datasources that should be deleted from the database
-#deleteDatasources:
-#  - name: Graphite
-#    orgId: 1
-
 datasources:
-
-#  - name: influxdb2
-#    type: influxdb
-#    access: proxy
-#    database: bucket1
-#    url: http://localhost:8086
-#    jsonData:
-#      httpHeaderName1: "Authorization"
-#    secureJsonData:
-#      httpHeaderValue1: "Token mytoken"
-#    isDefault: true
 
   - name: influxdb2
     type: influxdb
@@ -25,56 +9,10 @@ datasources:
     url: http://localhost:8086
     user: grafana
     secureJsonData:
-      token: XCV-SG8e2sAqN9UThQarr8Nz_UAei8vHqdcga7MYUHyqU7sNuhR6LIvhWlOzFU4oYBjwPaG7nkjBiGMb9lhbfA==
-#      password: grafana12345
+      token: EOkU3dPjbcu0sxv6x-0uZQ7wp5hx60AH0391X62fRKK62aijhMSjYx3NVlShxPLG1wlbpgKe3qfKedzZVKbS_Q==
     jsonData:
       version: Flux
       organization: netmon
       defaultBucket: bucket1
     isDefault: true
 
-
-#  - name: influxdb
-#    type: influxdb
-#    access: proxy
-#    orgId: 1
-#    url: http://localhost:8086
-#    password: juniper
-#    user: juniper
-#    database: telegraf
-#    basicAuth: false
-#    basicAuthUser:
-#    basicAuthPassword:
-#    withCredentials:
-#    isDefault: false
-#    editable: true
-  
-#  - name: docker_internal
-#    type: influxdb
-#    access: proxy
-#    orgId: 1
-#    url: http://localhost:8086
-#    password: juniper
-#    user: juniper
-#    database: docker_internal
-#    basicAuth: false
-#    basicAuthUser:
-#    basicAuthPassword:
-#    withCredentials:
-#    isDefault: false
-#    editable: true
-  
-#  - name: influxdb_internal
-#    type: influxdb
-#    access: proxy
-#    orgId: 1
-#    url: http://localhost:8086
-#    password: juniper
-#    user: juniper
-#    database: _internal
-#    basicAuth: false
-#    basicAuthUser:
-#    basicAuthPassword:
-#    withCredentials:
-#    isDefault: false
-#    editable: true

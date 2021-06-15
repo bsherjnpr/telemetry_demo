@@ -1,9 +1,13 @@
 
+TOKEN=pxE2GbzcOeW2_En_LJ59tXSNvQdQy7owoKzkj-AfVHUYOyMKaJqUbQDZiabOFTJxUotpqIZ6IyEN_elKE-51mg==
+ORG=netmon
+
+
 echo "measurements"
 echo "===================="
-curl -s --request POST \
-  http://localhost:8186/api/v2/query?org=jnpr  \
-  --header 'Authorization: Token YzVP5O1sbHQ695-o6HdhBOpSkL3hrQx8nGQr5E3IMU7UFe21pb5lgez8pe_GhVIHfQ-W65FpSkm_dgQBd6dRGA==' \
+curl  --request POST \
+  http://localhost:8186/api/v2/query?org=$ORG \
+  --header "Authorization: Token $TOKEN" \
   --header 'Accept: application/csv' \
   --header 'Content-type: application/vnd.flux' \
   --data ' 
@@ -15,9 +19,9 @@ schema.measurements(bucket: "bucket1")
 
 echo "field keys"
 echo "===================="
-curl -s --request POST \
-  http://localhost:8086/api/v2/query?org=jnpr  \
-  --header 'Authorization: Token YzVP5O1sbHQ695-o6HdhBOpSkL3hrQx8nGQr5E3IMU7UFe21pb5lgez8pe_GhVIHfQ-W65FpSkm_dgQBd6dRGA==' \
+curl  --request POST \
+  http://localhost:8186/api/v2/query?org=$ORG \
+  --header "Authorization: Token $TOKEN" \
   --header 'Accept: application/csv' \
   --header 'Content-type: application/vnd.flux' \
   --data ' 
@@ -29,9 +33,9 @@ schema.fieldKeys(bucket: "bucket1")
 
 echo "tag keys"
 echo "===================="
-curl -s --request POST \
-  http://localhost:8086/api/v2/query?org=jnpr  \
-  --header 'Authorization: Token YzVP5O1sbHQ695-o6HdhBOpSkL3hrQx8nGQr5E3IMU7UFe21pb5lgez8pe_GhVIHfQ-W65FpSkm_dgQBd6dRGA==' \
+curl  --request POST \
+  http://localhost:8186/api/v2/query?org=$ORG \
+  --header "Authorization: Token $TOKEN" \
   --header 'Accept: application/csv' \
   --header 'Content-type: application/vnd.flux' \
   --data ' 
@@ -42,9 +46,9 @@ schema.tagKeys(bucket: "bucket1")
 
 echo "tag values"
 echo "===================="
-curl -s --request POST \
-  http://localhost:8086/api/v2/query?org=jnpr  \
-  --header 'Authorization: Token YzVP5O1sbHQ695-o6HdhBOpSkL3hrQx8nGQr5E3IMU7UFe21pb5lgez8pe_GhVIHfQ-W65FpSkm_dgQBd6dRGA==' \
+curl --request POST \
+  http://localhost:8186/api/v2/query?org=$ORG  \
+  --header "Authorization: Token $TOKEN" \
   --header 'Accept: application/csv' \
   --header 'Content-type: application/vnd.flux' \
   --data ' 
@@ -52,6 +56,17 @@ import "influxdata/influxdb/schema"
 
 schema.tagValues(bucket: "bucket1", tag: "device")
 '
+
+
+echo "interface data"
+curl --request POST \
+  http://localhost:8186/api/v2/query?org=$ORG \
+  --header "Authorization: Token $TOKEN" \
+  --header 'Accept: application/csv' \
+  --header 'Content-type: application/vnd.flux' \
+  --data ' from(bucket: "bucket1")
+           |> range(start: -10m)
+         '
 
 
 

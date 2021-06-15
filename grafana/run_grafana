@@ -4,6 +4,9 @@ set -x
 
 source ../params
 
+#Generate the config file
+./gen_config.pl --influxdb_token_file ../grafana.token.txt > provisioning/datasources/default_datasources.yaml
+
 #--net=container:influxdb \
 #--volume "$PWD/configs:/var/lib/grafana" \
 docker run -d --rm --name=grafana \
