@@ -30,11 +30,12 @@ outputs:
     url: http://influxdb2:8086
     #url: http://127.0.0.1:8086
     #url: http://127.0.0.1:8186
-    bucket: bucket1
-    #token: H-qYf7QAAzrN7l3WVw3fhOP1HtdVwunOeBa-MUZb-opFrfLfsg9REltWoyBXdUhN6Tp5LizbOWTxaaqq8LSPPw==
+    bucket: gnmic
+    token: pxE2GbzcOeW2_En_LJ59tXSNvQdQy7owoKzkj-AfVHUYOyMKaJqUbQDZiabOFTJxUotpqIZ6IyEN_elKE-51mg==
     org: netmon 
     batch-size: 1000
     flush-timer: 10s
+    health-check-period: 30s
   output1:
     type: file # output type
     file-type: stdout # or stderr

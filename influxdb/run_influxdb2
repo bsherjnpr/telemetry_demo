@@ -15,7 +15,7 @@ docker run -d --rm --name influxdb2 \
        -p $GRAFANA_PORT:3000 \
        -v $PWD/data:/var/lib/influxdb2 \
        -v $PWD/config:/etc/influxdb2 \
-       $INFLUX_CONTAINER
+       $INFLUX_CONTAINER --log-level debug
 
 
 # docker container stop influxdb

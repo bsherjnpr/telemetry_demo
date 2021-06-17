@@ -26,6 +26,7 @@ https://www.dataschool.io/how-to-contribute-on-github/
 - [ ] provide a better readme - Quickstartt needs more details
 - [ ] Scale out telegraf for multiple hosts (horizontal scaling with more instances)
 
-
+# Notes
+- Insonmia SOCKS proxy: socks5h://localhost:8080
 
 

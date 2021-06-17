@@ -31,8 +31,8 @@ case "$1" in
 	    echo "need to specify config file"
 	    exit
     fi
+		   #-e GNMIC_OUTPUTS_INFLUXDB2_TOKEN=$GNMIC_TOKEN \
             docker run --rm --name gnmic \
-		   -e GNMIC_OUTPUTS_INFLUXDB2_TOKEN=$GNMIC_TOKEN \
                    --net=$DOCKER_NETWORK \
                    -v $PWD/config/gnmic1.yaml:/app/gnmic.yaml \
                    $GNMIC_CONTAINER subscribe --log --config /app/gnmic.yaml
